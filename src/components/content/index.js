@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Home from 'components/home'
+import Home from 'components/home';
 
 class Content extends Component {
     render() {

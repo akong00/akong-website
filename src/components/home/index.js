@@ -15,7 +15,6 @@ class Home extends Component {
                 {layer1 &&
                     <p>layer 1 activated</p>
                 }
-
             </div>
         );
     }
