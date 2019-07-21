@@ -1,0 +1,12 @@
+export const SIM_RESOLUTION = 128
+export const DYE_RESOLUTION = 512
+export const DENSITY_DISSIPATION = 0.975
+export const VELOCITY_DISSIPATION = 0.98
+export const PRESSURE_DISSIPATION = 0.9
+export const PRESSURE_ITERATIONS = 50
+export const CURL = 10
+export const SPLAT_RADIUS = 2
+export const SHADING = true
+export const COLORFUL = true
+export const BACK_COLOR = '#282c34'
+export const TRANSPARENT = false

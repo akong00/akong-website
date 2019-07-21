@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import Home from 'components/home';
 
@@ -8,7 +8,7 @@ class Content extends Component {
     render() {
         return (
             <section className='content'>
-                <div>
+                <div style={{width: '100%'}}>
                     <Route exact path='/' render={() => <Home />} />
                 </div>
             </section>
