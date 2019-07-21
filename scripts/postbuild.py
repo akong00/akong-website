@@ -21,5 +21,5 @@ call('git add .', shell = True)
 call('git commit -m "'+ commit_message +'"', shell = True)
 call('git push', shell = True)
 
-print('pushed to Github')
+print('pushed to Github on: ', datetime.today())
 #END
