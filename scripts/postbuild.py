@@ -4,8 +4,8 @@ from subprocess import call
 from datetime import datetime
 
 #MOVE BUILD TO CORRECT REPO
-source = '~/Github/akong-website/build'
-destination = '~/Github/akong00.github.io'
+source = 'build/'
+destination = '../akong00.github.io'
 
 items = os.listdir(source)
 
