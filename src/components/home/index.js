@@ -1,59 +1,103 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import actions from 'store/actions'
+import { connect } from 'react-redux';
+import actions from 'store/actions';
 
-import { Motion, spring } from 'react-motion'
+// import { Motion, spring } from 'react-motion';
 
-import FluidSimulation from 'components/fluidSimulation'
+import FluidSimulation from 'components/fluidSimulation';
+import * as createStyles from 'utils/createStyles';
+import './home.scss';
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {
+            width: window.innerWidth,
+            height: window.innerHeight
+        };
     };
 
-    handleMouseDown = () => {
-        this.setState({open: !this.state.open});
-    };
+    updateScreenDimensions() {
+        this.setState({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
+    }
 
-    handleTouchStart = (e) => {
-        e.preventDefault();
-        this.handleMouseDown();
-    };
+    componentWillMount() {
+        window.addEventListener("resize", this.updateScreenDimensions.bind(this));
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateScreenDimensions.bind(this));
+    }
+
+    // handleMouseUp = () => {
+    //     this.setState({open: !this.state.open});
+    // };
+
+    // handleTouchStart = (e) => {
+    //     this.handleMouseDown();
+    // };
 
     render() {
-        const { layer1 } = this.props.layers
-        const style1 = {
-            x: spring(this.state.open ? -200 : 200, {stiffness: 120, damping: 50}),
-            y: spring(this.state.open ? -50 : 50, {stiffness: 120, damping: 50})
-        }
+        const { panels } = this.props.data;
+        // const style1 = {
+        //     x: spring(this.state.open ? -200 : 200, {stiffness: 120, damping: 50}),
+        //     y: spring(this.state.open ? -50 : 50, {stiffness: 120, damping: 50})
+        // };
 
         return (
             <div className='home'>
-                <FluidSimulation />
-                <p>Test Message</p>
-                <button onClick={e => this.props.setLayer1(!layer1)}>
+                {panels.map(panel => {
+                    let panelStyle = createStyles.createPanelStyle(panel.position)
+                    let textContainerStyle = createStyles.createTextContainerStyle(panel.position)
+                    let textStyle = createStyles.createTextStyle(panel.position)
+                    return (
+                        <div key={panel.title} style={panelStyle}>
+                            <FluidSimulation 
+                            {...panelStyle}
+                            colorTheme={panel.colorTheme}
+                            splatRadiusMultiplier={panel.position !== 'left' && panel.position !== 'right' ? 10 : 1}
+                            />
+                            <div className='description-text-container' style={textContainerStyle}>
+                                <a href={panel.link}>
+                                    <h3 style={textStyle}>{panel.title}</h3>
+                                    <p>{panel.body}</p>
+                                </a>
+                                
+                                
+                            </div>
+                        </div>
+                    )
+                })
+                }
+                
+                {/* <div>
+                    <FluidSimulation colorTheme={colorTheme}/>
+                </div> */}
+                {/* <button onClick={e => this.props.setLayer1(!layer1)}>
                     toggle layer 1
                 </button>
-
                 {layer1 &&
                     <p>layer 1 activated</p>
                 }
                 <button
-                onMouseDown={this.handleMouseDown}
-                onTouchStart={this.handleTouchStart}
+                onClick={this.handleMouseUp}
+                // onTouchEnd={this.handleMouseUp}
                 >
                 Toggle
                 </button>
 
                 <Motion 
-                style={style1}>
+                style={style1}
+                >
                     {({x, y}) =>
                     // children is a callback which should accept the current value of
                     // `style`
-                    <div className="demo0">
+                    <div className="test">
                         <div
-                        className="demo0-block" 
+                        className="test-block" 
                         style={{
                             WebkitTransform: `translate3d(${x}px, ${y}px, 0)`,
                             transform: `translate3d(${x}px, ${y}px, 0)`,
@@ -63,7 +107,7 @@ class Home extends Component {
                         </div>
                     </div>
                     }
-                </Motion>
+                </Motion> */}
 
             </div>
         );
@@ -72,7 +116,7 @@ class Home extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        layers: state.content.home,
+        data: state.content.home,
     };
 };
 

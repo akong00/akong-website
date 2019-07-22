@@ -1,6 +1,42 @@
 let initialState = {
     home: {
-        layer1: false
+        panels: [
+            {
+                position: 'center',
+                colorTheme: ['w'],
+                title: 'Albert Kong',
+                body: 'all my babies',
+                link: '/bio',
+            },
+            {
+                position: 'right',
+                colorTheme: ['v','v','b'],
+                title: 'Projects',
+                body: 'all my babies',
+                link: '/projects',
+            },
+            {
+                position: 'top',
+                colorTheme: ['o','o','o'],
+                title: 'Work Experience',
+                body: 'all the experience in the world',
+                link: '/experience',
+            },
+            {
+                position: 'left',
+                colorTheme: ['r'],
+                title: 'Education',
+                body: 'all my babies',
+                link: '/education',
+            },
+            {
+                position: 'bottom',
+                colorTheme: ['g','y'],
+                title: 'Activities',
+                body: 'all my babies',
+                link: '/activities',
+            }
+        ]
     }
 };
 

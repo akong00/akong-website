@@ -1,0 +1,14 @@
+@import 'utils/styleVariables.scss';
+
+div.App {
+    font-family: 'Righteous';
+
+    h3 {
+        font-size: 40px;
+    }
+
+    a {
+        color: $textColor;
+        text-decoration: none;
+    }
+}

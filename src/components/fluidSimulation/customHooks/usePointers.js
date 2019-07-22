@@ -14,7 +14,7 @@ export function Pointer() {
     this.color = [30, 0, 300]
 }
 
-export default function usePointers() {
+export default function usePointers(colorTheme) {
     const canvas = useCanvas()
 
     const pointers = useMemo(() => {
@@ -30,7 +30,7 @@ export default function usePointers() {
 
             for (let i = 0; i < pointers.length; i++) {
             const p = pointers[i]
-            p.color = generateColor()
+            p.color = generateColor(colorTheme)
             }
         }
         })
@@ -40,74 +40,72 @@ export default function usePointers() {
 
     useEffect(() => {
         function onMouseMove(e) {
-        if(Math.random() > 0.8) {
             /* mimicking onMouseDown */
             pointers[0].down = true
-            pointers[0].color = generateColor()
-        }
-        
-        let x = e.pageX
-        let y = e.pageY
+            pointers[0].color = generateColor(colorTheme)
+            
+            let x = e.pageX
+            let y = e.pageY
 
-        x -= canvas.offsetLeft
-        y -= canvas.offsetTop
+            x -= canvas.offsetLeft
+            y -= canvas.offsetTop
 
-        pointers[0].moved = pointers[0].down
-        pointers[0].dx = (x - pointers[0].x) * 5.0
-        pointers[0].dy = (y - pointers[0].y) * 5.0
-        pointers[0].x = x
-        pointers[0].y = y
+            pointers[0].moved = pointers[0].down
+            pointers[0].dx = (x - pointers[0].x) * 5.0
+            pointers[0].dy = (y - pointers[0].y) * 5.0
+            pointers[0].x = x
+            pointers[0].y = y
         }
 
         function onTouchMove(e) {
-        e.preventDefault()
+            e.preventDefault()
 
-        const touches = e.targetTouches
+            const touches = e.targetTouches
 
-        for (let i = 0; i < touches.length; i++) {
-            const pointer = pointers[i]
-            pointer.moved = pointer.down
+                for (let i = 0; i < touches.length; i++) {
+                    const pointer = pointers[i]
+                    pointer.moved = pointer.down
 
-            let x = touches[i].pageX
-            let y = touches[i].pageY
+                    let x = touches[i].pageX
+                    let y = touches[i].pageY
 
-            x -= canvas.offsetLeft
-            y -= canvas.offsetTop
+                    x -= canvas.offsetLeft
+                    y -= canvas.offsetTop
 
-            pointer.dx = (x - pointer.x) * 8.0
-            pointer.dy = (y - pointer.y) * 8.0
-            pointer.x = x
-            pointer.y = y
-        }
-        }
+                    pointer.dx = (x - pointer.x) * 8.0
+                    pointer.dy = (y - pointer.y) * 8.0
+                    pointer.x = x
+                    pointer.y = y
+                }
+            }
 
         function onMouseDown() {
-        pointers[0].down = true
-        pointers[0].color = generateColor()
+            // pointers[0].down = true
+            // pointers[0].color = generateColor(colorTheme)
         }
 
         function onTouchStart(e) {
-        e.preventDefault()
+            e.preventDefault()
 
-        const touches = e.targetTouches
+            const touches = e.targetTouches
 
-        for (let i = 0; i < touches.length; i++) {
-            if (i >= pointers.length) {
-            pointers.push(new Pointer())
+            for (let i = 0; i < touches.length; i++) {
+                if (i >= pointers.length) {
+                pointers.push(new Pointer())
+                }
+
+                let x = touches[i].pageX
+                let y = touches[i].pageY
+
+                x -= canvas.offsetLeft
+                y -= canvas.offsetTop
+
+                pointers[i].id = touches[i].identifier
+                pointers[i].down = true
+                pointers[i].x = x
+                pointers[i].y = y
+                pointers[i].color = generateColor(colorTheme)
             }
-
-            let x = touches[i].pageX
-            let y = touches[i].pageY
-
-            x -= canvas.offsetLeft
-            y -= canvas.offsetTop
-
-            pointers[i].id = touches[i].identifier
-            pointers[i].down = true
-            pointers[i].x = x
-            pointers[i].y = y
-            pointers[i].color = generateColor()
-        }
         }
 
         function onMouseUp() {
@@ -119,7 +117,7 @@ export default function usePointers() {
 
         for (let i = 0; i < touches.length; i++) {
             for (let j = 0; j < pointers.length; j++) {
-            if (touches[i].identifier == pointers[j].id) {
+            if (touches[i].identifier === pointers[j].id) {
                 pointers[j].down = false
             }
             }
@@ -141,7 +139,7 @@ export default function usePointers() {
         window.removeEventListener('mouseup', onMouseUp)
         window.removeEventListener('touchend', onTouchEnd)
         }
-    }, [pointers, canvas])
+    }, [pointers, canvas, colorTheme])
 
     return pointers
 }

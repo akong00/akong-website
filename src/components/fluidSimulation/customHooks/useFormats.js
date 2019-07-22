@@ -19,7 +19,7 @@ function supportRenderTextureFormat(gl, internalFormat, format, type) {
 
   const status = gl.checkFramebufferStatus(gl.FRAMEBUFFER)
 
-  if (status != gl.FRAMEBUFFER_COMPLETE) {
+  if (status !== gl.FRAMEBUFFER_COMPLETE) {
     return false
   }
 

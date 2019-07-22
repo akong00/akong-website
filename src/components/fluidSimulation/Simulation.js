@@ -14,13 +14,14 @@ import {
 
 const backColor = convertHex(config.BACK_COLOR)
 
-function Simulation() {
+function Simulation(props) {
     const { width, clientWidth, height, clientHeight } = useCanvasSize()
+    const { colorTheme, splatRadiusMultiplier } = props
 
     const gl = useWebGLContext()
     const formats = useFormats(gl)
 
-    const pointers = usePointers()
+    const pointers = usePointers(colorTheme)
     const programs = usePrograms(gl, formats.hasLinear)
 
     const simSize = useResolution(config.SIM_RESOLUTION, width, height)
@@ -233,7 +234,7 @@ function Simulation() {
             gl.uniform1f(splat.uniforms.aspectRatio, width / height)
             gl.uniform2f(splat.uniforms.point, centerX, centerY)
             gl.uniform3f(splat.uniforms.color, dx, -dy, 1.0)
-            gl.uniform1f(splat.uniforms.radius, config.SPLAT_RADIUS / 100.0)
+            gl.uniform1f(splat.uniforms.radius, config.SPLAT_RADIUS / 100.0 * splatRadiusMultiplier)
             renderToBuffer(velocityDFBO.write.fbo)
             velocityDFBO.swap()
 
@@ -245,17 +246,17 @@ function Simulation() {
         }
 
         function multipleSplats(amount) {
-        for (let i = 0; i < amount; i++) {
-            const splatRGB = generateColor()
-            splatRGB.r *= 10.0
-            splatRGB.g *= 10.0
-            splatRGB.b *= 10.0
-            const x = width * Math.random()
-            const y = height * Math.random()
-            const dx = 1000 * (Math.random() - 0.5)
-            const dy = 1000 * (Math.random() - 0.5)
-            updateSplat(x, y, dx, dy, splatRGB)
-        }
+            for (let i = 0; i < amount; i++) {
+                const splatRGB = generateColor(colorTheme)
+                splatRGB.r *= 10.0
+                splatRGB.g *= 10.0
+                splatRGB.b *= 10.0
+                const x = width * Math.random()
+                const y = height * Math.random()
+                const dx = 1000 * (Math.random() - 0.5)
+                const dy = 1000 * (Math.random() - 0.5)
+                updateSplat(x, y, dx, dy, splatRGB)
+            }
         }
 
         const timerLoop = timer(() => {
@@ -264,7 +265,7 @@ function Simulation() {
         render(null)
         })
 
-        // multipleSplats(parseInt(Math.random() * 20) + 20)
+        if(config.INITIAL_SPLATS > 0) multipleSplats(config.INITIAL_SPLATS)
 
         return () => timerLoop.stop()
     }, [
@@ -279,6 +280,8 @@ function Simulation() {
         clientHeight,
         programs,
         framebuffers,
+        colorTheme,
+        splatRadiusMultiplier,
     ])
 
     return null
