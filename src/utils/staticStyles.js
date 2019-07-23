@@ -54,12 +54,14 @@ export function createTextContainerStyle(section) {
     };
 
     let height = window.innerHeight;
+    let width = window.innerWidth;
+    let fontHeight = width / height < 1 ? Math.floor(width / 20) : Math.floor(height / 20);
 
     switch(section) {
         case 'right':
             r.top = Math.floor(height / 2);
             r.bottom = Math.floor(height / 2);
-            r.right = '-8em';
+            r.right = -(20 + fontHeight * 2.7);
             r.textAlign = 'center';
             r.transform = 'rotate(90deg)';
             break;
@@ -72,7 +74,7 @@ export function createTextContainerStyle(section) {
         case 'left':
             r.top = Math.floor(height / 2);
             r.bottom = Math.floor(height / 2);
-            r.left = '-8em';
+            r.left = -(20 + fontHeight * 2.7);
             r.textAlign = 'center';
             r.transform = 'rotate(-90deg)';
             break;
@@ -86,7 +88,6 @@ export function createTextContainerStyle(section) {
             r.right = 0;
             r.left = 0;
             r.top = Math.floor(height / 3);
-            r.marginTop = '2em';
             r.textAlign = 'center';
             break;
         default:
@@ -97,11 +98,14 @@ export function createTextContainerStyle(section) {
 }
 
 export function createTextStyle(section) {
+    let height = window.innerHeight;
+    let width = window.innerWidth;
     let r = {
         pointerEvents: 'all',
         minWidth: '5em',
+        fontSize: width / height < 1 ? Math.floor(width / 20) : Math.floor(height / 20),
     }
-
+    
     switch(section) {
         case 'right':
             break;

@@ -46,7 +46,7 @@ class Home extends Component {
                             const panelStyle = staticStyles.createPanelStyle(panel.position);
                             const textContainerStyle = staticStyles.createTextContainerStyle(panel.position);
                             const textStyle = staticStyles.createTextStyle(panel.position);
-                            const textMotionStyle = {fontSize: spring(this.state.curPanel === panel.title ? 45 : 40)};
+                            const textMotionStyle = {fontMultiplier: spring(this.state.curPanel === panel.title ? 1.05 : 1)};
 
                             return (
                                 <div key={panel.title} style={panelStyle} onMouseEnter={() => this.setState({curPanel: panel.title})}>
@@ -57,17 +57,17 @@ class Home extends Component {
                                     />
                                     <div className='description-text-container' style={textContainerStyle}>
                                         <Motion style={textMotionStyle}>
-                                            {({fontSize}) => 
+                                            {({fontMultiplier}) => 
                                                 <div>
                                                     <a href={panel.link}>
-                                                        <h3 href={panel.link} style={{...textStyle, fontSize: fontSize}}>
+                                                        <h3 style={{...textStyle, fontSize: textStyle.fontSize * fontMultiplier}}>
                                                             {panel.title}
                                                         </h3>
                                                     </a>
                                                     <div className='row'>
                                                         {panel.position === 'center' && panel.body.map(e =>
                                                             <a key={e.name} href={e.link} target='_blank'>
-                                                                <p style={{...textStyle, fontSize: 18, maxWidth: '1em'}}>
+                                                                <p style={{...textStyle, fontSize: Math.floor(textStyle.fontSize / 2), maxWidth: '1em'}}>
                                                                     {e.name}
                                                                 </p>
                                                             </a>
