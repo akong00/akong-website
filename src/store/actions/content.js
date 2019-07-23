@@ -1,4 +1,4 @@
-import * as ActionTypes from 'store/actionTypes.js';
+import * as ActionTypes from 'Store/actionTypes.js';
 
 export function setLayer1(data) {
     return {

@@ -9,22 +9,22 @@ export function createPanelStyle(section) {
 
     switch(section) {
         case 'right':
-            r.clipPath = 'polygon(100% 0, 0 100%, 0 0, 100% 100%)';
+            r.clipPath = 'polygon(100% 0, 66.67% 33.33%, 66.67% 66.67%, 100% 100%)';
             r.paddingLeft = Math.round(r.width / 3 * 2);
             r.width = Math.round(r.width / 3);
             break;
         case 'top':
-            r.clipPath = 'polygon(0 0, 33.3% 100%, 66.7% 100%, 100% 0)';
+            r.clipPath = 'polygon(0 0, 33.33% 100%, 66.67% 100%, 100% 0)';
             r.height = Math.round(r.height / 3);
             r.zIndex = 2;
             break;
         case 'left':
-            r.clipPath = 'polygon(0 0, 100% 33.3%, 100% 66.7%, 0 100%)';
+            r.clipPath = 'polygon(0 0, 100% 33.33%, 100% 66.67%, 0 100%)';
             r.width = Math.round(r.width / 3);
             r.zIndex = 2;
             break;
         case 'bottom':
-            r.clipPath = 'polygon(100% 0, 0 100%, 100% 100%, 0 0)';
+            r.clipPath = 'polygon(33.33% 66.67%, 0 100%, 100% 100%, 66.67% 66.7%)';
             r.paddingTop = Math.round(r.height / 3 * 2);
             r.height = Math.round(r.height / 3);
             break;
@@ -37,7 +37,7 @@ export function createPanelStyle(section) {
             r.zIndex = 2;
             break;
         
-        default :
+        default:
             r.clipPath = 'polygon(33.3% 33.3%, 33.3% 66.7%, 66.7% 66.7%, 66.7% 33.3%)';
             r.height = Math.round(r.height / 3);
             r.width = Math.round(r.width / 3);
@@ -50,30 +50,47 @@ export function createPanelStyle(section) {
 export function createTextContainerStyle(section) {
     let r = {
         position: 'fixed',
-        zIndex: 0,
+        pointerEvents: 'none',
     };
+
+    let height = window.innerHeight;
 
     switch(section) {
         case 'right':
+            r.top = Math.floor(height / 2);
+            r.bottom = Math.floor(height / 2);
+            r.right = '-8em';
+            r.textAlign = 'center';
+            r.transform = 'rotate(90deg)';
             break;
         case 'top':
-            r.top = 10;
+            r.top = 0;
             r.left = 0;
             r.right = 0;
             r.textAlign = 'center';
-            r.pointerEvents = 'none';
             break;
         case 'left':
+            r.top = Math.floor(height / 2);
+            r.bottom = Math.floor(height / 2);
+            r.left = '-8em';
+            r.textAlign = 'center';
+            r.transform = 'rotate(-90deg)';
             break;
         case 'bottom':
-            
+            r.bottom = 0;
+            r.left = 0;
+            r.right = 0;
+            r.textAlign = 'center';
             break;
         case 'center':
-           
+            r.right = 0;
+            r.left = 0;
+            r.top = Math.floor(height / 3);
+            r.marginTop = '2em';
+            r.textAlign = 'center';
             break;
-        
-        default :
-            r.top = 10
+        default:
+            break;
     }
 
     return r
@@ -82,29 +99,32 @@ export function createTextContainerStyle(section) {
 export function createTextStyle(section) {
     let r = {
         pointerEvents: 'all',
-        maxWidth: '10em',
-        marginRight: 'auto',
-        marginLeft: 'auto'
+        minWidth: '5em',
     }
 
     switch(section) {
         case 'right':
-            r.transform = '';
             break;
         case 'top':
+            r.marginRight = 'auto';
+            r.marginLeft = 'auto';
+            r.maxWidth = '8em';
             break;
         case 'left':
-            
             break;
         case 'bottom':
-            
+            r.marginRight = 'auto';
+            r.marginLeft = 'auto';
+            r.maxWidth = '1em';
             break;
         case 'center':
-           
+            r.marginRight = 'auto';
+            r.marginLeft = 'auto';
+            r.maxWidth = '6em';
             break;
         
-        default :
-            r.top = 10
+        default:
+            break;
     }
 
     return r

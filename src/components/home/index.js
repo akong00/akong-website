@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import actions from 'store/actions';
+import actions from 'Store/actions';
 
-// import { Motion, spring } from 'react-motion';
+import { Motion, spring } from 'react-motion';
 
-import FluidSimulation from 'components/fluidSimulation';
-import * as createStyles from 'utils/createStyles';
+import FluidSimulation from 'Components/fluidSimulation';
+import * as staticStyles from 'Utils/staticStyles';
+
 import './home.scss';
 
 class Home extends Component {
@@ -13,7 +14,8 @@ class Home extends Component {
         super(props);
         this.state = {
             width: window.innerWidth,
-            height: window.innerHeight
+            height: window.innerHeight,
+            curPanel: ''
         };
     };
 
@@ -32,91 +34,63 @@ class Home extends Component {
         window.removeEventListener("resize", this.updateScreenDimensions.bind(this));
     }
 
-    // handleMouseUp = () => {
-    //     this.setState({open: !this.state.open});
-    // };
-
-    // handleTouchStart = (e) => {
-    //     this.handleMouseDown();
-    // };
-
     render() {
+        const { pageLoadStyle } = this.props;
         const { panels } = this.props.data;
-        // const style1 = {
-        //     x: spring(this.state.open ? -200 : 200, {stiffness: 120, damping: 50}),
-        //     y: spring(this.state.open ? -50 : 50, {stiffness: 120, damping: 50})
-        // };
-
+        
         return (
-            <div className='home'>
-                {panels.map(panel => {
-                    let panelStyle = createStyles.createPanelStyle(panel.position)
-                    let textContainerStyle = createStyles.createTextContainerStyle(panel.position)
-                    let textStyle = createStyles.createTextStyle(panel.position)
-                    return (
-                        <div key={panel.title} style={panelStyle}>
-                            <FluidSimulation 
-                            {...panelStyle}
-                            colorTheme={panel.colorTheme}
-                            splatRadiusMultiplier={panel.position !== 'left' && panel.position !== 'right' ? 10 : 1}
-                            />
-                            <div className='description-text-container' style={textContainerStyle}>
-                                <a href={panel.link}>
-                                    <h3 style={textStyle}>{panel.title}</h3>
-                                    <p>{panel.body}</p>
-                                </a>
-                                
-                                
-                            </div>
-                        </div>
-                    )
-                })
-                }
-                
-                {/* <div>
-                    <FluidSimulation colorTheme={colorTheme}/>
-                </div> */}
-                {/* <button onClick={e => this.props.setLayer1(!layer1)}>
-                    toggle layer 1
-                </button>
-                {layer1 &&
-                    <p>layer 1 activated</p>
-                }
-                <button
-                onClick={this.handleMouseUp}
-                // onTouchEnd={this.handleMouseUp}
-                >
-                Toggle
-                </button>
+            <Motion defaultStyle={pageLoadStyle.initial} style={pageLoadStyle.final}>
+                {({opacity}) =>
+                    <div className='container' style={{opacity: opacity}}>
+                        {panels.map(panel => {
+                            const panelStyle = staticStyles.createPanelStyle(panel.position);
+                            const textContainerStyle = staticStyles.createTextContainerStyle(panel.position);
+                            const textStyle = staticStyles.createTextStyle(panel.position);
+                            const textMotionStyle = {fontSize: spring(this.state.curPanel === panel.title ? 45 : 40)};
 
-                <Motion 
-                style={style1}
-                >
-                    {({x, y}) =>
-                    // children is a callback which should accept the current value of
-                    // `style`
-                    <div className="test">
-                        <div
-                        className="test-block" 
-                        style={{
-                            WebkitTransform: `translate3d(${x}px, ${y}px, 0)`,
-                            transform: `translate3d(${x}px, ${y}px, 0)`,
-                        }}
-                        >
-                            test text
-                        </div>
+                            return (
+                                <div key={panel.title} style={panelStyle} onMouseEnter={() => this.setState({curPanel: panel.title})}>
+                                    <FluidSimulation
+                                    {...panelStyle}
+                                    colorTheme={panel.colorTheme}
+                                    splatRadiusMultiplier={panel.position !== 'left' && panel.position !== 'right' ? 10 : 1}
+                                    />
+                                    <div className='description-text-container' style={textContainerStyle}>
+                                        <Motion style={textMotionStyle}>
+                                            {({fontSize}) => 
+                                                <div>
+                                                    <a href={panel.link}>
+                                                        <h3 href={panel.link} style={{...textStyle, fontSize: fontSize}}>
+                                                            {panel.title}
+                                                        </h3>
+                                                    </a>
+                                                    <div className='row'>
+                                                        {panel.position === 'center' && panel.body.map(e =>
+                                                            <a key={e.name} href={e.link} target='_blank'>
+                                                                <p style={{...textStyle, fontSize: 18, maxWidth: '1em'}}>
+                                                                    {e.name}
+                                                                </p>
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            }
+                                        </Motion>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
-                    }
-                </Motion> */}
-
-            </div>
+                }
+            </Motion>
+            
         );
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        data: state.content.home,
+        data: state.content.home
     };
 };
 

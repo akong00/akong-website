@@ -25,14 +25,14 @@ export default function usePointers(colorTheme) {
         let lastColorChange = 0
 
         const timerLoop = timer(() => {
-        if (lastColorChange + 100 < Date.now()) {
-            lastColorChange = Date.now()
+            if (lastColorChange + 100 < Date.now()) {
+                lastColorChange = Date.now()
 
-            for (let i = 0; i < pointers.length; i++) {
-            const p = pointers[i]
-            p.color = generateColor(colorTheme)
+                for (let i = 0; i < pointers.length; i++) {
+                    const p = pointers[i]
+                    p.color = generateColor(colorTheme)
+                }
             }
-        }
         })
 
         return () => timerLoop.stop()
@@ -109,19 +109,19 @@ export default function usePointers(colorTheme) {
         }
 
         function onMouseUp() {
-        pointers[0].down = false
+            pointers[0].down = false
         }
 
         function onTouchEnd(e) {
-        const touches = e.changedTouches
+            const touches = e.changedTouches
 
-        for (let i = 0; i < touches.length; i++) {
-            for (let j = 0; j < pointers.length; j++) {
-            if (touches[i].identifier === pointers[j].id) {
-                pointers[j].down = false
+            for (let i = 0; i < touches.length; i++) {
+                for (let j = 0; j < pointers.length; j++) {
+                    if (touches[i].identifier === pointers[j].id) {
+                        pointers[j].down = false
+                    }
+                }
             }
-            }
-        }
         }
 
         canvas.addEventListener('mousemove', onMouseMove)

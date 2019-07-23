@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Canvas } from '@react-vertex/core'
-import { useMeasure } from '@react-vertex/dom-hooks'
+// import { useMeasure } from '@react-vertex/dom-hooks'
 import Simulation from './Simulation'
 // import { color } from './customHooks/usePrograms/shaders';
 
@@ -23,8 +23,6 @@ const style = {
 
 function FluidSimulation(props) {
     const container = useRef()
-    const { canvasWidth, canvasHeight } = useMeasure(container)
-
     // colorTheme is an array of any combination of r, o, y, g, b, v, w (red, orange, yellow, green, blue, violet, white)
     // add more of one character for more weight
     // example: ['r','r','g','v']

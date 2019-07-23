@@ -5,8 +5,20 @@ let initialState = {
                 position: 'center',
                 colorTheme: ['w'],
                 title: 'Albert Kong',
-                body: 'all my babies',
-                link: '/bio',
+                body: [
+                    {
+                        name: 'Github',
+                        link: 'https://github.com/akong00',
+                    },
+                    {
+                        name: 'Resume',
+                        link: '#',
+                    },
+                    {
+                        name: 'Email',
+                        link: 'mailto:albert.kong00@gmail.com',
+                    },
+                ],
             },
             {
                 position: 'right',
