@@ -1,7 +1,6 @@
 export function createPanelStyle(section) {
     let r = {
         position: 'fixed',
-        zIndex: 1,
         width: window.innerWidth,
         height: window.innerHeight,
         clipPath: ''
@@ -16,12 +15,10 @@ export function createPanelStyle(section) {
         case 'top':
             r.clipPath = 'polygon(0 0, 33.33% 100%, 66.67% 100%, 100% 0)';
             r.height = Math.round(r.height / 3);
-            r.zIndex = 2;
             break;
         case 'left':
             r.clipPath = 'polygon(0 0, 100% 33.33%, 100% 66.67%, 0 100%)';
             r.width = Math.round(r.width / 3);
-            r.zIndex = 2;
             break;
         case 'bottom':
             r.clipPath = 'polygon(33.33% 66.67%, 0 100%, 100% 100%, 66.67% 66.7%)';
@@ -34,14 +31,14 @@ export function createPanelStyle(section) {
             r.paddingTop = Math.round(r.height / 3);
             r.width = Math.floor(r.width / 3) + 1;
             r.height = Math.floor(r.height / 3) + 1;
-            r.zIndex = 2;
             break;
         
         default:
-            r.clipPath = 'polygon(33.3% 33.3%, 33.3% 66.7%, 66.7% 66.7%, 66.7% 33.3%)';
-            r.height = Math.round(r.height / 3);
-            r.width = Math.round(r.width / 3);
-            r.zIndex = 2;
+            r.clipPath = 'polygon(0 0, 0 100%, 100% 100%, 100% 0)';
+            r.paddingLeft = Math.round(r.width / 3);
+            r.paddingTop = Math.round(r.height / 3);
+            r.width = Math.floor(r.width / 3) + 1;
+            r.height = Math.floor(r.height / 3) + 1;
     }
 
     return r
@@ -104,8 +101,9 @@ export function createTextStyle(section) {
         pointerEvents: 'all',
         minWidth: '5em',
         fontSize: width / height < 1 ? Math.floor(width / 20) : Math.floor(height / 20),
+        cursor: 'pointer',
     }
-    
+
     switch(section) {
         case 'right':
             break;
@@ -125,6 +123,7 @@ export function createTextStyle(section) {
             r.marginRight = 'auto';
             r.marginLeft = 'auto';
             r.maxWidth = '6em';
+            r.cursor = 'default';
             break;
         
         default:

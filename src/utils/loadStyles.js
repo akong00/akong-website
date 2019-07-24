@@ -13,6 +13,6 @@ export const pageExitStyle = {
         opacity: 1
     },
     final: {
-        opacity: spring(0, {stiffness: 10, damping: 3})
+        opacity: spring(0, {stiffness: 20, damping: 7})
     },
 }

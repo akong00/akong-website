@@ -1,8 +1,8 @@
 import * as ActionTypes from 'Store/actionTypes.js';
 
-export function setLayer1(data) {
+export function setNextPage(componentId, id, nextPage) {
     return {
-        type: ActionTypes.SET_LAYER_1,
-        payload: { data }
+        type: ActionTypes.SET_NEXT_PAGE,
+        payload: { componentId, id, nextPage }
     };
 }
