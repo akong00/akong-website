@@ -1,7 +1,7 @@
 import React from 'react';
 import 'App.scss';
 
-import Content from 'Components/content'
+import Content from 'Components/content';
 
 function App() {
     return (

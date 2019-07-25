@@ -11,11 +11,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    background-color: $backgroundColor;
-    color: $textColor;
-    
-    max-width: 100%;
-    // overflow-x: hidden;
+    background-color: $backgroundColor !important;
+    color: $textColor !important;
 }
 
 code {
