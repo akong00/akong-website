@@ -1,8 +1,8 @@
 import * as ActionTypes from 'Store/actionTypes.js';
 
-export function setNextPage(componentId, id, nextPage) {
+export function setNextPage(nextPage) {
     return {
         type: ActionTypes.SET_NEXT_PAGE,
-        payload: { componentId, id, nextPage }
+        payload: { nextPage }
     };
 }

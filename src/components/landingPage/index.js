@@ -40,67 +40,57 @@ class LandingPage extends Component {
         const { panels, nextPage } = this.props.data;
         
         return (
-            <Motion
-            defaultStyle={nextPage ? pageExitStyle.initial : pageLoadStyle.initial}
-            style={nextPage ? pageExitStyle.final : pageLoadStyle.final}
-            >
-                {({opacity}) => {
-                if(nextPage && opacity === 0) return <Redirect to={nextPage}/>;
-                return (
-                    <div className='landing-page' style={{opacity: opacity}}>
-                        {panels.map(panel => {
-                        const panelStyle = staticStyles.createPanelStyle(panel.position);
-                        const textContainerStyle = staticStyles.createTextContainerStyle(panel.position);
-                        const textStyle = staticStyles.createTextStyle(panel.position);
-                        const textMotionStyle = {fontMultiplier: spring(this.state.curPanel === panel.title ? 1.05 : 1)};
+            <div className='landing-page'>
+                {panels.map(panel => {
+                const panelStyle = staticStyles.createPanelStyle(panel.position);
+                const textContainerStyle = staticStyles.createTextContainerStyle(panel.position);
+                const textStyle = staticStyles.createTextStyle(panel.position);
+                const textMotionStyle = {fontMultiplier: spring(this.state.curPanel === panel.title ? 1.05 : 1)};
 
-                        return (
-                            <div key={panel.title} style={panelStyle} onMouseEnter={() => this.setState({curPanel: panel.title})}>
-                                <FluidSimulation
-                                {...panelStyle}
-                                colorTheme={panel.colorTheme}
-                                splatRadiusMultiplier={panel.position !== 'left' && panel.position !== 'right' ? 10 : 1}
-                                />
-                                <div className='description-text-container' style={textContainerStyle}>
-                                    <Motion style={textMotionStyle}>
-                                        {({fontMultiplier}) =>
-                                        <div>
-                                            <h3
-                                            style={{...textStyle, fontSize: textStyle.fontSize * fontMultiplier}}
-                                            onClick={() => this.props.setNextPage('landingPage', id, panel.link)}
-                                            >
-                                                {panel.title}
-                                            </h3>
-                                            <div className='row'>
-                                                {panel.position === 'center' && panel.body.map(e =>
-                                                <a
-                                                key={e.name}
-                                                href={e.link}
-                                                rel="noopener noreferrer"
-                                                target='_blank'
-                                                >
-                                                    <p style={{
-                                                        ...textStyle,
-                                                        fontSize: Math.floor(textStyle.fontSize / 2) * fontMultiplier,
-                                                        maxWidth: '1em',
-                                                        cursor: 'pointer'
-                                                    }}>
-                                                        {e.name}
-                                                    </p>
-                                                </a>
-                                                )}
-                                            </div>
-                                        </div>
-                                        }
-                                    </Motion>
+                return (
+                    <div key={panel.title} style={panelStyle} onMouseEnter={() => this.setState({curPanel: panel.title})}>
+                        <FluidSimulation
+                        {...panelStyle}
+                        colorTheme={panel.colorTheme}
+                        splatRadiusMultiplier={panel.position !== 'left' && panel.position !== 'right' ? 10 : 1}
+                        />
+                        <div className='description-text-container' style={textContainerStyle}>
+                            <Motion style={textMotionStyle}>
+                                {({fontMultiplier}) =>
+                                <div>
+                                    <h3
+                                    style={{...textStyle, fontSize: textStyle.fontSize * fontMultiplier}}
+                                    onClick={() => this.props.setNextPage(panel.link)}
+                                    >
+                                        {panel.title}
+                                    </h3>
+                                    <div className='row'>
+                                        {panel.position === 'center' && panel.body.map(e =>
+                                        <a
+                                        key={e.name}
+                                        href={e.link}
+                                        rel="noopener noreferrer"
+                                        target='_blank'
+                                        >
+                                            <p style={{
+                                                ...textStyle,
+                                                fontSize: Math.floor(textStyle.fontSize / 2) * fontMultiplier,
+                                                maxWidth: '1em',
+                                                cursor: 'pointer'
+                                            }}>
+                                                {e.name}
+                                            </p>
+                                        </a>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                        })}
+                                }
+                            </Motion>
+                        </div>
                     </div>
                 );
-                }}
-            </Motion>
+                })}
+            </div>
         );
     }
 }
@@ -113,7 +103,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setNextPage: (componentId, id, nextPage) => dispatch(actions.setNextPage(componentId, id, nextPage)),
+        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
     };
 };
 

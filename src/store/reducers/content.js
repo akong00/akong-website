@@ -1,4 +1,5 @@
 let initialState = {
+    nextPage: '',
     landingPage: {
         home: {
             nextPage: '',
@@ -78,15 +79,9 @@ let initialState = {
 function setNextPage(state, action) {
     let nextState = {
         ...state,
-        [action.payload.componentId]: {
-            ...state[action.payload.componentId],
-            [action.payload.id]: {
-                ...state[action.payload.componentId][action.payload.id],
-                nextPage: action.payload.nextPage,
-            }
-        }
+        nextPage: action.payload.nextPage,
     }
-    console.log('working', nextState);
+    
     return nextState;
 }
 
