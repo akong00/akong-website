@@ -1,3 +1,5 @@
+import React from 'react';
+
 let initialState = {
     nextPage: '',
     displayPage: {
@@ -5,7 +7,9 @@ let initialState = {
             panels: [
                 {
                     title: 'Checkbook Inc.',
-                    timespace: 'May - August 2019   San Mateo, CA',
+                    details: <span>May - August 2019
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        San Mateo, CA</span>,
                     link: 'https://checkbook.io',
                     description: 'A fintech company that provides digital check services.',
                     img: {
@@ -13,14 +17,14 @@ let initialState = {
                         alt: 'Checkbook_Logo'
                     },
                     bulletPoints: [
-                        'Used React and Redux to build webpages on checkbook.io',
-                        'Built and maintained the internal information portal using React, Redux, and Flask',
-                        'Used various REST APIs to track user information for Checkbook',
+                        'Used React and Redux to build webpages on checkbook.io.',
+                        'Built and maintained the internal information portal using React, Redux, and Flask.',
+                        'Used various REST APIs to track user information for Checkbook.',
                     ]
                 },
                 {
                     title: 'Next Wave!',
-                    timespace: 'July 2018',
+                    details: 'July 2018',
                     link: 'https://github.com/akong00/next-wave',
                     description: 'A mobile game published on the iOS App Store and Google Play Store.',
                     img: {
@@ -28,17 +32,81 @@ let initialState = {
                         alt: 'Next_Wave_Icon'
                     },
                     bulletPoints: [
-                        'Built using Unity, C#, and GIMP (for all designs)',
-                        'All assets were custom created/processed using GIMP, sound editors, or animation tools in Unity',
+                        'Built using Unity, C#, and GIMP (for all designs).',
+                        'All assets were custom created/processed using GIMP, sound editors, or animation tools in Unity.',
+                    ]
+                },
+                {
+                    title: 'Personal Website',
+                    details: 'July 2018',
+                    link: 'https://github.com/akong00/akong-website',
+                    description: 'My first personal website built from scratch!',
+                    img: {
+                        src: 'Images/displayPage/react.png',
+                        alt: 'React_Icon'
+                    },
+                    bulletPoints: [
+                        'Built using React and Redux.',
+                        'Created and designed without any templates. Everything was custom built.',
                     ]
                 },
             ]
         },
+        education: {
+            panels: [
+                {
+                    title: 'University of Illinois at Urbana-Champaign',
+                    details: 'August 2018 - Present',
+                    link: 'https://illinois.edu/',
+                    description: 'Bachelor of Science in Computer Engineering',
+                    img: {
+                        src: 'Images/displayPage/uiuc.png',
+                        alt: 'UIUC_Logo'
+                    },
+                    bulletPoints: [
+                        'GPA: 4.0/4.0'
+                    ]
+                },
+                {
+                    title: 'Vernon Hills High School',
+                    details: 'August 2014 - May 2018',
+                    link: 'https://www.d128.org/vhhs/',
+                    description: '',
+                    img: {
+                        src: 'Images/displayPage/vhhs.png',
+                        alt: 'VHHS_Logo'
+                    },
+                    bulletPoints: [
+                        'Unweighted GPA: 3.83/4.0',
+                        'Weighted GPA: 4.40'
+                    ]
+                },
+                {
+                    title: 'Computer Systems and Programming',
+                    details: 'January - May 2018',
+                    link: 'https://ece.illinois.edu/academics/courses/profile/ECE220',
+                    description: 'ECE - 220 ',
+                    img: {
+                        src: 'Images/displayPage/vhhs.png',
+                        alt: 'VHHS_Logo'
+                    },
+                    bulletPoints: [
+                        'Advanced use of LC-3 assembly language for I/O and function calling convention.',
+                        'C programming, covering basic programming concepts, functions, arrays, pointers, I/O, recursion, simple data structures, linked lists, dynamic memory management, and basic algorithms.',
+                        'Information hiding and object-oriented design as commonly implemented in modern software and computer systems programming.'
+                    ]
+                },
+            ],
+        }
     },
     hero: {
         experience: {
             title: 'Experience',
-            subtitle: 'Companies I have worked for and notable projects',
+            subtitle: 'Companies I have worked at and notable projects',
+        },
+        education: {
+            title: 'Education',
+            subtitle: 'Past schools and classes taken',
         },
     },
     landingPage: {

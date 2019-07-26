@@ -10,6 +10,7 @@ import FluidSimulation from 'Components/fluidSimulation';
 import * as staticStyles from 'Utils/staticStyles';
 
 import './landingPage.scss';
+import colors from 'Utils/styleVariables.scss';
 
 class LandingPage extends Component {
     constructor(props) {
@@ -41,13 +42,20 @@ class LandingPage extends Component {
         return (
             <div className='landing-page'>
                 {panels.map(panel => {
+                const isCurPanel = this.state.curPanel === panel.title;
                 const panelStyle = staticStyles.createPanelStyle(panel.position);
                 const textContainerStyle = staticStyles.createTextContainerStyle(panel.position);
                 const textStyle = staticStyles.createTextStyle(panel.position);
-                const textMotionStyle = {fontMultiplier: spring(this.state.curPanel === panel.title ? 1.05 : 1)};
-
+                const textMotionStyle = {fontMultiplier: spring(isCurPanel ? 1.05 : 1)};
                 return (
-                    <div key={panel.title} style={panelStyle} onMouseEnter={() => this.setState({curPanel: panel.title})}>
+                    <div
+                    className='panel'
+                    onClick={() => this.props.setNextPage(panel.link)}
+                    key={panel.title}
+                    style={panelStyle}
+                    onMouseEnter={() => this.setState({curPanel: panel.title})}
+                    onMouseLeave={() => this.setState({curPanel: ''})}
+                    >
                         <FluidSimulation
                         {...panelStyle}
                         colorTheme={panel.colorTheme}
@@ -62,13 +70,14 @@ class LandingPage extends Component {
                                 {({fontMultiplier}) =>
                                 <div>
                                     <h3
-                                    style={{...textStyle, fontSize: textStyle.fontSize * fontMultiplier}}
+                                    style={{...textStyle, fontSize: textStyle.fontSize * fontMultiplier,
+                                        color: isCurPanel && panel.position !== 'center' && colors.hoverColor}}
                                     onClick={() => this.props.setNextPage(panel.link)}
                                     >
                                         {panel.title}
                                     </h3>
                                     {panel.position === 'center' &&
-                                    <Row className='justify-content-md-center'>
+                                    <Row className='justify-content-center'>
                                         {panel.body.map(e =>
                                         <a
                                         key={e.name}

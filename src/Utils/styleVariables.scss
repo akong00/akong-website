@@ -1,2 +1,11 @@
 $backgroundColor: #282b34;
 $textColor: white;
+$anchorColor: #5c95ff;
+$hoverColor: #ffb52b;
+
+:export {
+    backgroundColor: $backgroundColor;
+    textColor: $textColor;
+    anchorColor: $anchorColor;
+    hoverColor: $hoverColor;
+}

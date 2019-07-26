@@ -2,4 +2,18 @@
 
 div.App {
     font-family: 'Righteous';
+
+    a {
+        color: $textColor;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: $hoverColor;
+    }
+
+    hr {
+        border-color: $textColor;
+        opacity: 0.7;
+    }
 }

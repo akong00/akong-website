@@ -16,7 +16,6 @@ const attrs = {
 
 const style = {
     borderRadius: 0,
-    cursor: 'default',
     userSelect: 'none',
     WebkitTapHighlightColor: 'transparent',
 }

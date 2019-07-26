@@ -5,13 +5,14 @@ import actions from 'Store/actions';
 import { Row, Col } from 'react-bootstrap';
 import { Motion, spring } from 'react-motion';
 
+// import link_svg from 'Images/link.svg';
 import Hero from 'Components/hero';
 import './displayPage.scss';
 
 class DisplayPage extends Component {
     render() {
-        const { id, pageLoadStyle } = this.props;
-        const { title, panels } = this.props.data;
+        const { id } = this.props;
+        const { panels } = this.props.data;
         
         return (
             <div className='display-page'>
@@ -19,11 +20,14 @@ class DisplayPage extends Component {
                 <a href='/'>Home</a>
                 <Row style={{margin: 10}}>
                     {panels.map(panel => 
-                    <Col style={{padding: 20, margin: 40, boxShadow: '0 0 10px rgb(70, 70, 70)'}}>
-                        <div>
-                            <h4>{panel.title}</h4>
-                            <i>{panel.timespace}</i><br/>
+                    <Col xs={12} md={6}>
+                        <div style={{height: '90%', padding: 20, margin: 20, boxShadow: '0 0 10px rgb(70, 70, 70)'}}>
+                            <a href={panel.link} target='_blank' rel='noopener noreferrer'>
+                                <h4>{panel.title}</h4>
+                            </a>
+                            <i>{panel.details}</i><br/>
                             <b>{panel.description}</b>
+                            <hr/>
                             {panel.bulletPoints.map(p =>
                                 <p>• {p}</p>
                             )}

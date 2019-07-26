@@ -1,9 +1,12 @@
+import colors from 'Utils/styleVariables.scss';
+
 export function createPanelStyle(section) {
     let r = {
         position: 'fixed',
         width: window.innerWidth,
         height: window.innerHeight,
-        clipPath: ''
+        clipPath: '',
+        cursor: 'pointer',
     };
 
     switch(section) {
@@ -11,7 +14,6 @@ export function createPanelStyle(section) {
             r.clipPath = 'polygon(100% 0, 0 33.33%, 0 66.67%, 100% 100%)';
             r.left = r.width / 3 * 2;
             r.width = r.width / 3;
-            // r.paddingLeft = Math.round(r.width / 3 * 2);
             break;
         case 'top':
             r.clipPath = 'polygon(0 0, 33.33% 100%, 66.67% 100%, 100% 0)';
@@ -25,16 +27,14 @@ export function createPanelStyle(section) {
             r.clipPath = 'polygon(33.33% 0, 0 100%, 100% 100%, 66.67% 0)';
             r.top = r.height / 3 * 2;
             r.height = r.height / 3;
-            // r.paddingTop = Math.round(r.height / 3 * 2);
             break;
         case 'center':
             r.clipPath = 'polygon(0 0, 0 100%, 100% 100%, 100% 0)';
             r.top = r.height / 3;
             r.left = r.width / 3;
-            // r.paddingLeft = Math.round(r.width / 3);
-            // r.paddingTop = Math.round(r.height / 3);
             r.width = Math.floor(r.width / 3) + 1;
             r.height = Math.floor(r.height / 3) + 1;
+            r.cursor = 'default';
             break;
         
         default:
@@ -56,12 +56,12 @@ export function createTextContainerStyle(section) {
 
     let height = window.innerHeight;
     let width = window.innerWidth;
-    let fontHeight = width / height < 1 ? Math.floor(width / 20) : Math.floor(height / 20);
+    let fontHeight = width / height < 1 ? width / 20 : height / 20;
 
     switch(section) {
         case 'right':
-            r.top = Math.floor(height / 2);
-            r.bottom = Math.floor(height / 2);
+            r.top = height / 2;
+            r.bottom = height / 2;
             r.right = -(20 + fontHeight * 2.7);
             r.textAlign = 'center';
             r.transform = 'rotate(90deg)';
@@ -73,8 +73,8 @@ export function createTextContainerStyle(section) {
             r.textAlign = 'center';
             break;
         case 'left':
-            r.top = Math.floor(height / 2);
-            r.bottom = Math.floor(height / 2);
+            r.top = height / 2;
+            r.bottom = height / 2;
             r.left = -(20 + fontHeight * 2.7);
             r.textAlign = 'center';
             r.transform = 'rotate(-90deg)';
@@ -88,7 +88,8 @@ export function createTextContainerStyle(section) {
         case 'center':
             r.right = 0;
             r.left = 0;
-            r.top = Math.floor(height / 3);
+            r.top = height / 3;
+            r.height = height / 3;
             r.textAlign = 'center';
             break;
         default:
@@ -110,24 +111,21 @@ export function createTextStyle(section) {
 
     switch(section) {
         case 'right':
-            break;
-        case 'top':
-            r.marginRight = 'auto';
-            r.marginLeft = 'auto';
-            r.maxWidth = '8em';
-            break;
         case 'left':
             break;
+        case 'top':
         case 'bottom':
             r.marginRight = 'auto';
             r.marginLeft = 'auto';
-            r.maxWidth = '1em';
+            r.maxWidth = '6em';
             break;
         case 'center':
             r.marginRight = 'auto';
             r.marginLeft = 'auto';
+            r.marginTop = '1em';
             r.maxWidth = '7em';
             r.cursor = 'default';
+            r.hover = 'white';
             break;
         
         default:

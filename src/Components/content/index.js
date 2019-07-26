@@ -28,6 +28,7 @@ class Content extends Component {
                         <div style={{width: '100%', opacity: opacity}}>
                             <Route exact path='/' render={() => <LandingPage id={'home'} />} />
                             <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
+                            <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
                         </div>
                     );
                     }}
