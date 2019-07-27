@@ -4,7 +4,7 @@ div.App {
     font-family: 'Righteous';
 
     a {
-        color: $textColor;
+        color: $anchorColor;
         text-decoration: none;
     }
 
@@ -13,7 +13,14 @@ div.App {
     }
 
     hr {
+        margin-top: 0.8rem;
+        margin-bottom: 0.8rem;
         border-color: $textColor;
         opacity: 0.7;
+    }
+
+    pre {
+        color: $textColor;
+        margin-bottom: 0px;
     }
 }

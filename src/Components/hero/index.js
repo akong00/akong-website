@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import actions from 'Store/actions';
+// import actions from 'Store/actions';
 
 // import { Motion, spring } from 'react-motion';
 
@@ -8,7 +8,7 @@ import actions from 'Store/actions';
 
 class Hero extends Component {
     render() {
-        const { id } = this.props;
+        // const { id } = this.props;
         const { title, subtitle } = this.props.data;
         
         return (

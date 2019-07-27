@@ -1,112 +1,161 @@
 import React from 'react';
 
 let initialState = {
-    nextPage: '',
+    content: {
+        curPage: '/',
+        nextPage: '',
+    },
     displayPage: {
         experience: {
-            panels: [
+            categories: [
                 {
-                    title: 'Checkbook Inc.',
-                    details: <span>May - August 2019
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        San Mateo, CA</span>,
-                    link: 'https://checkbook.io',
-                    description: 'A fintech company that provides digital check services.',
-                    img: {
-                        src: 'Images/displayPage/checkbook.png',
-                        alt: 'Checkbook_Logo'
-                    },
-                    bulletPoints: [
-                        'Used React and Redux to build webpages on checkbook.io.',
-                        'Built and maintained the internal information portal using React, Redux, and Flask.',
-                        'Used various REST APIs to track user information for Checkbook.',
-                    ]
+                    title: 'Companies',
+                    panels: [
+                        {
+                            title: 'Checkbook Inc.',
+                            details: 'May - August 2019          San Mateo, CA',
+                            link: 'https://checkbook.io',
+                            description: 'Fintech company that provides digital check services',
+                            img: {
+                                src: 'Images/displayPage/checkbook.png',
+                                alt: 'Checkbook_Logo'
+                            },
+                            bulletPoints: [
+                                'Used React and Redux to build webpages on checkbook.io.',
+                                'Built and maintained the internal information portal using React, Redux, and Flask.',
+                                'Used various REST APIs to track user information for Checkbook.',
+                            ]
+                        },
+                        {
+                            title: 'Kumon',
+                            details: 'July 2016 - July 2017        Libertyville, IL',
+                            link: 'https://www.kumon.com',
+                            description: 'Tutoring center that teaches math and reading',
+                            img: {
+                                src: 'Images/displayPage/kumon.png',
+                                alt: 'Kumon_Logo'
+                            },
+                            bulletPoints: [
+                                'Taught kids ranging from 7-17 years old in math (calculus II and under) and literature',
+                            ]
+                        },
+                        {
+                            title: 'Capstone Investment',
+                            details: 'June - July 2016         Shanghai, China',
+                            link: 'http://www.capstone-invest.com/statics/?type=detail&id=11',
+                            description: 'Hedge fund and investment company that trades stocks, futures, and commodities',
+                            img: {
+                                src: 'Images/displayPage/capstone.png',
+                                alt: 'Capstone_Logo'
+                            },
+                            bulletPoints: [
+                                'Learned about IPOs, the stock market, media/news tactics, hedging strategies, speculation, and the futures market in China',
+                                'Observed traders, researchers/analysts, IT department, and the daily processes of the company',
+                                'Used simulated trading tools to speculate the market',
+                            ]
+                        },
+                    ],        
                 },
                 {
-                    title: 'Next Wave!',
-                    details: 'July 2018',
-                    link: 'https://github.com/akong00/next-wave',
-                    description: 'A mobile game published on the iOS App Store and Google Play Store.',
-                    img: {
-                        src: 'Images/displayPage/nextWave.png',
-                        alt: 'Next_Wave_Icon'
-                    },
-                    bulletPoints: [
-                        'Built using Unity, C#, and GIMP (for all designs).',
-                        'All assets were custom created/processed using GIMP, sound editors, or animation tools in Unity.',
+                    title: 'Projects',
+                    panels: [
+                        {
+                            title: 'Personal Website',
+                            details: 'July 2019',
+                            link: 'https://github.com/akong00/akong-website',
+                            description: 'My first personal website built from scratch!',
+                            img: {
+                                src: 'Images/displayPage/react.png',
+                                alt: 'React_Icon'
+                            },
+                            bulletPoints: [
+                                'Built using React and Redux.',
+                                'Created and designed without any templates. Everything was custom built.',
+                            ]
+                        },
+                        {
+                            title: 'Next Wave!',
+                            details: 'July 2018',
+                            link: 'https://github.com/akong00/next-wave',
+                            description: 'Mobile game published on the iOS App Store and Google Play Store',
+                            img: {
+                                src: 'Images/displayPage/nextWave.png',
+                                alt: 'Next_Wave_Icon'
+                            },
+                            bulletPoints: [
+                                'Built using Unity, C#, and GIMP (for all designs).',
+                                'All assets were custom created/processed using GIMP, sound editors, or animation tools in Unity.',
+                            ]
+                        },
                     ]
-                },
-                {
-                    title: 'Personal Website',
-                    details: 'July 2018',
-                    link: 'https://github.com/akong00/akong-website',
-                    description: 'My first personal website built from scratch!',
-                    img: {
-                        src: 'Images/displayPage/react.png',
-                        alt: 'React_Icon'
-                    },
-                    bulletPoints: [
-                        'Built using React and Redux.',
-                        'Created and designed without any templates. Everything was custom built.',
-                    ]
-                },
+                }
             ]
         },
         education: {
-            panels: [
+            categories: [
                 {
-                    title: 'University of Illinois at Urbana-Champaign',
-                    details: 'August 2018 - Present',
-                    link: 'https://illinois.edu/',
-                    description: 'Bachelor of Science in Computer Engineering',
-                    img: {
-                        src: 'Images/displayPage/uiuc.png',
-                        alt: 'UIUC_Logo'
-                    },
-                    bulletPoints: [
-                        'GPA: 4.0/4.0'
-                    ]
+                    title: 'Schools',
+                    panels: [
+                        {
+                            title: 'University of Illinois at Urbana-Champaign',
+                            details: 'August 2018 - Present          Champaign, IL',
+                            link: 'https://illinois.edu/',
+                            description: 'Bachelor of Science in Computer Engineering',
+                            img: {
+                                src: 'Images/displayPage/uiuc.png',
+                                alt: 'UIUC_Logo'
+                            },
+                            bulletPoints: [
+                                'GPA: 4.0/4.0'
+                            ]
+                        },
+                        {
+                            title: 'Vernon Hills High School',
+                            details: 'August 2014 - May 2018          Vernon Hills, IL',
+                            link: 'https://www.d128.org/vhhs/',
+                            description: 'Mr. Walgren was a cool teacher',
+                            img: {
+                                src: 'Images/displayPage/vhhs.png',
+                                alt: 'VHHS_Logo'
+                            },
+                            bulletPoints: [
+                                'Unweighted GPA: 3.83/4.0',
+                                'Weighted GPA: 4.40'
+                            ]
+                        },
+                    ],
                 },
                 {
-                    title: 'Vernon Hills High School',
-                    details: 'August 2014 - May 2018',
-                    link: 'https://www.d128.org/vhhs/',
-                    description: '',
-                    img: {
-                        src: 'Images/displayPage/vhhs.png',
-                        alt: 'VHHS_Logo'
-                    },
-                    bulletPoints: [
-                        'Unweighted GPA: 3.83/4.0',
-                        'Weighted GPA: 4.40'
-                    ]
-                },
-                {
-                    title: 'Computer Systems and Programming',
-                    details: 'January - May 2018',
-                    link: 'https://ece.illinois.edu/academics/courses/profile/ECE220',
-                    description: 'ECE - 220 ',
-                    img: {
-                        src: 'Images/displayPage/vhhs.png',
-                        alt: 'VHHS_Logo'
-                    },
-                    bulletPoints: [
-                        'Advanced use of LC-3 assembly language for I/O and function calling convention.',
-                        'C programming, covering basic programming concepts, functions, arrays, pointers, I/O, recursion, simple data structures, linked lists, dynamic memory management, and basic algorithms.',
-                        'Information hiding and object-oriented design as commonly implemented in modern software and computer systems programming.'
-                    ]
+                    title: 'Courses',
+                    panels: [
+                        {
+                            title: 'Computer Systems and Programming',
+                            details: 'January - May 2018',
+                            link: 'https://ece.illinois.edu/academics/courses/profile/ECE220',
+                            description: 'ECE - 220 ',
+                            img: {
+                                src: 'Images/displayPage/vhhs.png',
+                                alt: 'VHHS_Logo'
+                            },
+                            bulletPoints: [
+                                'Advanced use of LC-3 assembly language for I/O and function calling convention.',
+                                'C programming, covering basic programming concepts, functions, arrays, pointers, I/O, recursion, simple data structures, linked lists, dynamic memory management, and basic algorithms.',
+                                'Information hiding and object-oriented design as commonly implemented in modern software and computer systems programming.'
+                            ]
+                        },
+                    ],
                 },
             ],
-        }
+        },
     },
     hero: {
         experience: {
             title: 'Experience',
-            subtitle: 'Companies I have worked at and notable projects',
+            subtitle: 'Companies and Projects',
         },
         education: {
             title: 'Education',
-            subtitle: 'Past schools and classes taken',
+            subtitle: 'Schools and Classes',
         },
     },
     landingPage: {
@@ -173,9 +222,11 @@ let initialState = {
 function setNextPage(state, action) {
     let nextState = {
         ...state,
-        nextPage: action.payload.nextPage,
+        content: {
+            curPage: state.content.nextPage ? state.content.nextPage : state.content.curPage,
+            nextPage: action.payload.nextPage,
+        }
     }
-    
     return nextState;
 }
 
