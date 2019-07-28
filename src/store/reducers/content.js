@@ -132,7 +132,7 @@ let initialState = {
                             title: 'Computer Systems and Programming',
                             details: 'January - May 2018',
                             link: 'https://ece.illinois.edu/academics/courses/profile/ECE220',
-                            description: 'ECE - 220 ',
+                            description: 'ECE - 220',
                             img: {
                                 src: 'Images/displayPage/vhhs.png',
                                 alt: 'VHHS_Logo'
@@ -141,6 +141,47 @@ let initialState = {
                                 'Advanced use of LC-3 assembly language for I/O and function calling convention.',
                                 'C programming, covering basic programming concepts, functions, arrays, pointers, I/O, recursion, simple data structures, linked lists, dynamic memory management, and basic algorithms.',
                                 'Information hiding and object-oriented design as commonly implemented in modern software and computer systems programming.'
+                            ]
+                        },
+                    ],
+                },
+            ],
+        },
+        activities: {
+            categories: [
+                {
+                    title: 'Student Associations',
+                    panels: [
+                        {
+                            title: 'SIGPwny',
+                            details: 'August 2018 - Present          Champaign, IL',
+                            link: 'https://sigpwny.github.io/',
+                            description: 'A special interest group focused on cyber security and CTF competitions',
+                            img: {
+                                src: 'Images/displayPage/sigPwny.png',
+                                alt: 'SIGPwny_Logo'
+                            },
+                            bulletPoints: [
+                                'Learn various internet security features and practices.',
+                                'Do CTF (capture the flag) competitions, where we solve problems through hacking and capture a "flag."',
+                            ]
+                        },
+                    ],
+                },
+                {
+                    title: 'Volunteering',
+                    panels: [
+                        {
+                            title: 'Feed My Starving Children (FMSC)',
+                            details: 'September 2018 - Present',
+                            link: 'https://fmsc.org',
+                            description: 'An organization dedicated to feeding starving children around the world',
+                            img: {
+                                src: 'Images/displayPage/fmsc.png',
+                                alt: 'FMSC_Logo'
+                            },
+                            bulletPoints: [
+                                'Pack ingredients, box meals, and help out with operations in food packing.',
                             ]
                         },
                     ],
@@ -156,6 +197,10 @@ let initialState = {
         education: {
             title: 'Education',
             subtitle: 'Schools and Classes',
+        },
+        activities: {
+            title: 'Activities',
+            subtitile: 'Student Organizations and Volunteering',
         },
     },
     landingPage: {

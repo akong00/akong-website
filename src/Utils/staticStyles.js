@@ -1,4 +1,15 @@
-import colors from 'Utils/styleVariables.scss';
+// import colors from 'Utils/styleVariables.scss';
+
+export const hiddenStyle = {
+    // overflow: 'hidden',
+    position: 'absolute',
+    display: 'none',
+    height: '1px',
+    width: '1px',
+    margin: '-1px',
+    padding: 0,
+    border: 0
+}
 
 export function createPanelStyle(section) {
     let r = {
@@ -62,7 +73,7 @@ export function createTextContainerStyle(section) {
         case 'right':
             r.top = height / 2;
             r.bottom = height / 2;
-            r.right = -(20 + fontHeight * 2.7);
+            r.right = -(20 + fontHeight * 2);
             r.textAlign = 'center';
             r.transform = 'rotate(90deg)';
             break;
@@ -75,7 +86,7 @@ export function createTextContainerStyle(section) {
         case 'left':
             r.top = height / 2;
             r.bottom = height / 2;
-            r.left = -(20 + fontHeight * 2.7);
+            r.left = -(20 + fontHeight * 2);
             r.textAlign = 'center';
             r.transform = 'rotate(-90deg)';
             break;

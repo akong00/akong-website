@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import actions from 'Store/actions';
 
 import { Motion, spring } from 'react-motion';
-import { Row, Col} from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 import FluidSimulation from 'Components/fluidSimulation';
 import * as staticStyles from 'Utils/staticStyles';
@@ -38,9 +38,10 @@ class LandingPage extends Component {
     }
 
     render() { 
+        const { id } = this.props;
         const { panels } = this.props.data;
         return (
-            <div className='landing-page'>
+            <div className='landing-page' id={id}>
                 {panels.map(panel => {
                 const isCurPanel = this.state.curPanel === panel.title;
                 const panelStyle = staticStyles.createPanelStyle(panel.position);
@@ -69,11 +70,7 @@ class LandingPage extends Component {
                             <Motion style={textMotionStyle}>
                                 {({fontMultiplier}) =>
                                 <div>
-                                    <h3
-                                    style={{...textStyle, fontSize: textStyle.fontSize * fontMultiplier,
-                                        color: isCurPanel && panel.position !== 'center' && colors.hoverColor}}
-                                    onClick={() => this.props.setNextPage(panel.link)}
-                                    >
+                                    <h3 style={{...textStyle, fontSize: textStyle.fontSize * fontMultiplier, color: isCurPanel && panel.position !== 'center' && colors.hoverColor}}>
                                         {panel.title}
                                     </h3>
                                     {panel.position === 'center' &&
@@ -82,7 +79,7 @@ class LandingPage extends Component {
                                         <a
                                         key={e.name}
                                         href={e.link}
-                                        rel='noopener noreferrer'
+                                        // rel='noopener noreferrer'
                                         target='_blank'
                                         >
                                             <p style={{

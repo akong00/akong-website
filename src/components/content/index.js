@@ -42,11 +42,10 @@ class Content extends Component {
                                 <CustomNavbar />
                             </div>
                             }
-                            <div style={{ display: 'flex', height: 'calc(100% - 60px)' }}>
-                                <Route exact path='/' render={() => <LandingPage id={'home'} />} />
-                                <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
-                                <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
-                            </div>
+                            <Route exact path='/' render={() => <LandingPage id={'home'} />} />
+                            <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
+                            <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
+                            <Route exact path='/activities' render={() => <DisplayPage id={'activities'} />} />
                             {/* <div style={curPage !== '/' ? hiddenStyle : null}><LandingPage id={'home'} /></div>
                             <div style={curPage !== '/experience' ? hiddenStyle : null}><DisplayPage id={'experience'} /></div>
                             <div style={curPage !== '/education' ? hiddenStyle : null}><DisplayPage id={'education'} /></div> */}
