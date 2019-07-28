@@ -8,6 +8,7 @@ import * as loadStyles from 'Utils/loadStyles';
 import * as staticStyles from 'Utils/staticStyles'
 import LandingPage from 'Components/landingPage';
 import DisplayPage from 'Components/displayPage';
+import CustomNavbar from 'Components/customNavbar';
 
 class Content extends Component {
     // componentWillMount() {
@@ -20,9 +21,9 @@ class Content extends Component {
     render() {
         const { curPage, nextPage } = this.props.content;
         const { pageLoadStyle, pageExitStyle } = loadStyles;
-        const hiddenStyle = staticStyles.hiddenStyle;
+        // const hiddenStyle = staticStyles.hiddenStyle;
         return (
-            <section className='content'>
+            <div className='content'>
                 <Motion
                 defaultStyle={nextPage ? pageExitStyle.initial : pageLoadStyle.initial}
                 style={nextPage ? pageExitStyle.final : pageLoadStyle.final}
@@ -36,17 +37,25 @@ class Content extends Component {
                     }
                     return (
                         <div style={{width: '100%', opacity: opacity}}>
+                            {window.location.hash.slice(1) !== '/' && 
+                            <div style={{height: 56}}>
+                                <CustomNavbar />
+                            </div>
+                            }
+                            <div style={{ display: 'flex', height: 'calc(100% - 60px)' }}>
+                                <Route exact path='/' render={() => <LandingPage id={'home'} />} />
+                                <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
+                                <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
+                            </div>
                             {/* <div style={curPage !== '/' ? hiddenStyle : null}><LandingPage id={'home'} /></div>
                             <div style={curPage !== '/experience' ? hiddenStyle : null}><DisplayPage id={'experience'} /></div>
                             <div style={curPage !== '/education' ? hiddenStyle : null}><DisplayPage id={'education'} /></div> */}
-                            <Route exact path='/' render={() => <LandingPage id={'home'} />} />
-                            <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
-                            <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
+                            
                         </div>
                     );
                     }}
                 </Motion>
-            </section>
+            </div>
         );
     }
 }

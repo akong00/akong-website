@@ -2,7 +2,7 @@ import React from 'react';
 
 let initialState = {
     content: {
-        curPage: '/',
+        curPage: window.location.hash.slice(1),
         nextPage: '',
     },
     displayPage: {

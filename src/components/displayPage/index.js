@@ -8,6 +8,7 @@ import { Motion, spring } from 'react-motion';
 // import link_svg from 'Images/link.svg';
 import Hero from 'Components/hero';
 import './displayPage.scss';
+import * as styles from 'Utils/styleVariables.scss'
 
 class DisplayPage extends Component {
     render() {
@@ -17,7 +18,6 @@ class DisplayPage extends Component {
         return (
             <div className='display-page' id={id}>
                 <Hero id={id}/>
-                <h5 style={{cursor: 'pointer'}} onClick={() => this.props.setNextPage('/')}>Home</h5>
                 {categories.map(category =>
                 <div key={category.title} style={{margin: 20}}>
                     <h3 style={{marginLeft: 10}}>{category.title}</h3>
@@ -25,7 +25,7 @@ class DisplayPage extends Component {
                     <Row>
                         {category.panels.map(panel => 
                         <Col key={panel.title} xs={12} md={6} style={{padding: 15}}>
-                            <div style={{height: '90%', padding: 20, margin: 20, boxShadow: '0 0 10px rgb(70, 70, 70)'}}>
+                            <div style={{height: '90%', padding: 20, margin: 20, boxShadow: styles.boxShadow}}>
                                 <a
                                 href={panel.link}
                                 target='_blank'
@@ -37,7 +37,7 @@ class DisplayPage extends Component {
                                 <b>{panel.description}</b>
                                 <hr/>
                                 {panel.bulletPoints.map(p =>
-                                    <p key={p}>• {p}</p>
+                                    <p key={p} style={{margin: 0}}>• {p}</p>
                                 )}
                             </div>
                         </Col>

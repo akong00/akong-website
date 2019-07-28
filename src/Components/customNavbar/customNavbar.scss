@@ -1,0 +1,18 @@
+@import 'Utils/styleVariables.scss';
+
+div.custom-navbar {
+    nav {
+        background-color: $backgroundColor;
+        box-shadow: $boxShadow;
+    }
+
+    a, span, div.dropdown-menu {
+        border-radius: 4px;
+        color: $textColor !important;
+        background-color: $backgroundColor;
+    }
+
+    a:hover {
+        background-color: $backgroundHoverColor;
+    }
+}

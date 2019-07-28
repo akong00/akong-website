@@ -1,11 +1,17 @@
 $backgroundColor: #282b34;
 $textColor: white;
+$backgroundHoverColor: #3f424d;
 $anchorColor: #5c95ff;
 $hoverColor: #ffb52b;
+$shadowColor: #464646;
+$boxShadow: 0 0 10px $shadowColor;
+
 
 :export {
     backgroundColor: $backgroundColor;
     textColor: $textColor;
     anchorColor: $anchorColor;
     hoverColor: $hoverColor;
+    shadowColor: $shadowColor;
+    boxShadow: $boxShadow;
 }
