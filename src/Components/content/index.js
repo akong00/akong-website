@@ -36,22 +36,26 @@ class Content extends Component {
                         return <Redirect push to={nextPage}/>; //∂
                     }
                     return (
-                        <div style={{width: '100%', opacity: opacity}}>
-                            {window.location.hash.slice(1) !== '/' && 
-                            <div style={{height: 56}}>
-                                <CustomNavbar />
+                        <div>
+                            <div className='navbar-container'>
+                                {window.location.hash.slice(1) !== '/' && 
+                                <div style={{height: 56, opacity: nextPage === '/' ? opacity : 1}}>
+                                    <CustomNavbar />
+                                </div>
+                                }
                             </div>
-                            }
-                            <Route exact path='/' render={() => <LandingPage id={'home'} />} />
-                            <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
-                            <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
-                            <Route exact path='/activities' render={() => <DisplayPage id={'activities'} />} />
-                            {/* <div style={curPage !== '/' ? hiddenStyle : null}><LandingPage id={'home'} /></div>
-                            <div style={curPage !== '/experience' ? hiddenStyle : null}><DisplayPage id={'experience'} /></div>
-                            <div style={curPage !== '/education' ? hiddenStyle : null}><DisplayPage id={'education'} /></div> */}
-                            
+                            <div className='route-container' style={{width: '100%', opacity: opacity}}>
+                                <Route exact path='/' render={() => <LandingPage id={'home'} />} />
+                                <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
+                                <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
+                                <Route exact path='/activities' render={() => <DisplayPage id={'activities'} />} />
+                                {/* <div style={curPage !== '/' ? hiddenStyle : null}><LandingPage id={'home'} /></div>
+                                <div style={curPage !== '/experience' ? hiddenStyle : null}><DisplayPage id={'experience'} /></div>
+                                <div style={curPage !== '/education' ? hiddenStyle : null}><DisplayPage id={'education'} /></div> */}
+                                
+                            </div>
                         </div>
-                    );
+                        );
                     }}
                 </Motion>
             </div>
