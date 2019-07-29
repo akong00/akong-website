@@ -203,6 +203,10 @@ let initialState = {
             title: 'Activities',
             subtitile: 'Student Organizations and Volunteering',
         },
+        blogs: {
+            title: 'Tech Blogs',
+            subtitile: 'Tutorials and Solved Issues',
+        },
     },
     landingPage: {
         home: {
