@@ -1,4 +1,5 @@
 import React from 'react';
+import * as images from 'Images';
 
 let initialState = {
     content: {
@@ -17,7 +18,7 @@ let initialState = {
                             link: 'https://checkbook.io',
                             description: 'Fintech company that provides digital check services',
                             img: {
-                                src: 'Images/displayPage/checkbook.png',
+                                src: require('Images/displayPage/checkbook.png'),
                                 alt: 'Checkbook_Logo'
                             },
                             bulletPoints: [
@@ -32,7 +33,7 @@ let initialState = {
                             link: 'https://www.kumon.com',
                             description: 'Tutoring center that teaches math and reading',
                             img: {
-                                src: 'Images/displayPage/kumon.png',
+                                src: require('Images/displayPage/kumon.png'),
                                 alt: 'Kumon_Logo'
                             },
                             bulletPoints: [
@@ -45,7 +46,7 @@ let initialState = {
                             link: 'http://www.capstone-invest.com/statics/?type=detail&id=11',
                             description: 'Hedge fund and investment company that trades stocks, futures, and commodities',
                             img: {
-                                src: 'Images/displayPage/capstone.png',
+                                src: require('Images/displayPage/capstone.png'),
                                 alt: 'Capstone_Logo'
                             },
                             bulletPoints: [
@@ -65,7 +66,7 @@ let initialState = {
                             link: 'https://github.com/akong00/akong-website',
                             description: 'My first personal website built from scratch!',
                             img: {
-                                src: 'Images/displayPage/react.png',
+                                src: require('Images/displayPage/react.png'),
                                 alt: 'React_Icon'
                             },
                             bulletPoints: [
@@ -79,7 +80,7 @@ let initialState = {
                             link: 'https://github.com/akong00/next-wave',
                             description: 'Mobile game published on the iOS App Store and Google Play Store',
                             img: {
-                                src: 'Images/displayPage/nextWave.png',
+                                src: require('Images/displayPage/nextWave.png'),
                                 alt: 'Next_Wave_Icon'
                             },
                             bulletPoints: [
@@ -102,7 +103,7 @@ let initialState = {
                             link: 'https://illinois.edu/',
                             description: 'Bachelor of Science in Computer Engineering',
                             img: {
-                                src: 'Images/displayPage/uiuc.png',
+                                src: require('Images/displayPage/uiuc.png'),
                                 alt: 'UIUC_Logo'
                             },
                             bulletPoints: [
@@ -115,7 +116,7 @@ let initialState = {
                             link: 'https://www.d128.org/vhhs/',
                             description: 'Mr. Walgren was a cool teacher',
                             img: {
-                                src: 'Images/displayPage/vhhs.png',
+                                src: require('Images/displayPage/vhhs.png'),
                                 alt: 'VHHS_Logo'
                             },
                             bulletPoints: [
@@ -134,8 +135,8 @@ let initialState = {
                             link: 'https://ece.illinois.edu/academics/courses/profile/ECE220',
                             description: 'ECE - 220',
                             img: {
-                                src: 'Images/displayPage/vhhs.png',
-                                alt: 'VHHS_Logo'
+                                src: require('Images/displayPage/uiuc.png'),
+                                alt: 'UIUC_Logo'
                             },
                             bulletPoints: [
                                 'Advanced use of LC-3 assembly language for I/O and function calling convention.',
@@ -158,12 +159,12 @@ let initialState = {
                             link: 'https://sigpwny.github.io/',
                             description: 'A special interest group focused on cyber security and CTF competitions',
                             img: {
-                                src: 'Images/displayPage/sigPwny.png',
+                                src: require('Images/displayPage/sigPwny.png'),
                                 alt: 'SIGPwny_Logo'
                             },
                             bulletPoints: [
                                 'Learn various internet security features and practices.',
-                                'Do CTF (capture the flag) competitions, where we solve problems through hacking and capture a "flag."',
+                                'Do CTF (capture the flag) competitions, where we solve problems through hacking.',
                             ]
                         },
                     ],
@@ -173,11 +174,11 @@ let initialState = {
                     panels: [
                         {
                             title: 'Feed My Starving Children (FMSC)',
-                            details: 'September 2018 - Present',
+                            details: 'September 2018 - Present          Libertyville, IL',
                             link: 'https://fmsc.org',
                             description: 'An organization dedicated to feeding starving children around the world',
                             img: {
-                                src: 'Images/displayPage/fmsc.png',
+                                src: require('Images/displayPage/fmsc.png'),
                                 alt: 'FMSC_Logo'
                             },
                             bulletPoints: [

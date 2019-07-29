@@ -6,9 +6,9 @@ $hoverColor: #ffb52b;
 $shadowColor: #464646;
 $boxShadow: 0 0 10px $shadowColor;
 
-
 :export {
     backgroundColor: $backgroundColor;
+    backgroundHoverColor: $backgroundHoverColor;
     textColor: $textColor;
     anchorColor: $anchorColor;
     hoverColor: $hoverColor;
