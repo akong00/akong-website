@@ -7,25 +7,26 @@ import { Motion, spring } from 'react-motion';
 
 // import link_svg from 'Images/link.svg';
 import Hero from 'Components/hero';
-import './displayPage.scss';
+import blogs from 'Blogs';
 import * as styles from 'Utils/styleVariables.scss';
 
 class Blog extends Component {
     render() {
         const { id } = this.props;
-        
         return (
             <div className='blog' id={id}>
-                
+                {Object.values(blogs[id]).map(post => 
+                <div>
+                    {post.title}
+                </div>
+                )}
             </div>
         );
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-        data: state.content.blog
-    };
+    return {};
 };
 
 const mapDispatchToProps = dispatch => {
