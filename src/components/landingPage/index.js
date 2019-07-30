@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import actions from 'Store/actions';
 
 import { Motion, spring } from 'react-motion';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 import FluidSimulation from 'Components/fluidSimulation';
 import * as staticStyles from 'Utils/staticStyles';
@@ -74,7 +74,7 @@ class LandingPage extends Component {
                                         {panel.title}
                                     </h3>
                                     {panel.position === 'center' &&
-                                    <Row className='justify-content-center'>
+                                    <Row className='justify-content-center' style={{width: panelStyle.width, margin: '0 auto 0 auto'}}>
                                         {panel.body.map(e =>
                                         <a
                                         key={e.name}

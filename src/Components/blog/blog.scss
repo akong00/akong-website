@@ -1,0 +1,21 @@
+@import 'Utils/styleVariables.scss';
+
+div.blog {
+    p {
+        margin-bottom: 0;
+    }
+
+    .hoverable:hover {
+        background-color: $backgroundHoverColor;
+        cursor: pointer;
+    }
+
+    div.post-container {
+        transition: transform 0.5s;
+    }
+
+    div.post-container:hover {
+        transform: scale(1.02, 1.02);
+        transition: transform 0.5s;
+    }
+}

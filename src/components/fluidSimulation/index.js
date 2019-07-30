@@ -4,8 +4,6 @@ import { Canvas } from '@react-vertex/core'
 import Simulation from './Simulation'
 // import { color } from './customHooks/usePrograms/shaders';
 
-import './fluidSimulation.scss'
-
 const attrs = {
     alpha: true,
     depth: false,

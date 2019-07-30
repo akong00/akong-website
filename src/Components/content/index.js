@@ -10,7 +10,7 @@ import LandingPage from 'Components/landingPage';
 import DisplayPage from 'Components/displayPage';
 import CustomNavbar from 'Components/customNavbar';
 import Blog from 'Components/blog';
-import Post from 'Components/blog/post.js';
+import Post from 'Components/post';
 
 class Content extends Component {
     // componentWillMount() {
@@ -51,8 +51,8 @@ class Content extends Component {
                                 <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
                                 <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
                                 <Route exact path='/activities' render={() => <DisplayPage id={'activities'} />} />
-                                <Route exact path='/blogs/:type' render={({match}) => <Blog id={match.params.type}/>} />
-                                <Route exact path='/blogs/post/:name' render={({match}) => <Post id={match.params.type}/>} />
+                                <Route exact path='/blogs/:type' render={({match}) => <Blog type={match.params.type}/>} />
+                                <Route exact path='/blogs/post/:type/:name' render={({match}) => <Post type={match.params.type} id={match.params.name} />} />
                                 {/* <div style={curPage !== '/' ? hiddenStyle : null}><LandingPage id={'home'} /></div>
                                 <div style={curPage !== '/experience' ? hiddenStyle : null}><DisplayPage id={'experience'} /></div>
                                 <div style={curPage !== '/education' ? hiddenStyle : null}><DisplayPage id={'education'} /></div> */}

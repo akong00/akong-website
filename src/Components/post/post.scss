@@ -1,0 +1,30 @@
+@import 'Utils/styleVariables.scss';
+div.post {
+    font-family: 'Roboto Condensed', sans-serif;
+    
+    div.post-content {
+        margin: 50px 27% 50px 27%;
+    }
+
+    h1 {
+        font-weight: 1000;
+    }
+
+    h2 {
+        margin: 25px 0 5px 0;
+    }
+
+    p {
+        margin: 0;
+        font-size: 1.4rem;
+    }
+
+    pre, code {
+        background-color: $backgroundHoverColor;
+        border-radius: 4px;
+    }
+
+    th, td {
+        border: 1px solid $textColor;
+    }
+}

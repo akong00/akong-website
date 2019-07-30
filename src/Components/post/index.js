@@ -2,24 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from 'Store/actions';
 
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, ModalTitle } from 'react-bootstrap';
 import { Motion, spring } from 'react-motion';
+import ReactMarkdown from 'react-markdown/with-html';
 
-// import link_svg from 'Images/link.svg';
-import Hero from 'Components/hero';
+import blogs from 'Blogs';
 import * as styles from 'Utils/styleVariables.scss';
+import './post.scss';
 
 class Post extends Component {
     render() {
-        const { id } = this.props;
-        
+        const { type, id } = this.props;
+        const post = blogs[type][id];
         return (
             <div className='post' id={id}>
-                <h1></h1>
-                <div>
-                    <p>
-
-                    </p>
+                <div className='post-content'>
+                    <h1>{post.title}</h1>
+                    <small><i>Posted by {post.author} on {post.date}</i></small>
+                    <hr/>
+                    <div>
+                        <ReactMarkdown
+                        source={post.content}
+                        escapeHtml={false}
+                        />
+                    </div>
                 </div>
             </div>
         );

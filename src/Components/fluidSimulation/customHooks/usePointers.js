@@ -69,8 +69,8 @@ export default function usePointers(colorTheme, customOffsets) {
                     let x = touches[i].pageX
                     let y = touches[i].pageY
 
-                    x -= canvas.offsetLeft
-                    y -= canvas.offsetTop
+                    x -= canvas.offsetLeft + customOffsets.left
+                    y -= canvas.offsetTop + customOffsets.top
 
                     pointer.dx = (x - pointer.x) * 8.0
                     pointer.dy = (y - pointer.y) * 8.0
@@ -97,8 +97,8 @@ export default function usePointers(colorTheme, customOffsets) {
                 let x = touches[i].pageX
                 let y = touches[i].pageY
 
-                x -= canvas.offsetLeft
-                y -= canvas.offsetTop
+                x -= canvas.offsetLeft + customOffsets.left
+                y -= canvas.offsetTop + customOffsets.top
 
                 pointers[i].id = touches[i].identifier
                 pointers[i].down = true

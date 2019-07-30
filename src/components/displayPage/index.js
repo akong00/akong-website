@@ -5,9 +5,8 @@ import actions from 'Store/actions';
 import { Row, Col } from 'react-bootstrap';
 import { Motion, spring } from 'react-motion';
 
-// import link_svg from 'Images/link.svg';
+
 import Hero from 'Components/hero';
-import './displayPage.scss';
 import * as styles from 'Utils/styleVariables.scss';
 
 class DisplayPage extends Component {
@@ -26,8 +25,8 @@ class DisplayPage extends Component {
                         {category.panels.map(panel => 
                         <Col key={panel.title} xs={12} md={6} style={{padding: 15}}>
                             <div style={{height: '90%', padding: 20, margin: 20, boxShadow: styles.boxShadow}}>
-                                <Row>
-                                    <img style={{backgroundColor: styles.backgroundHoverColor, height: '5em', width: '5em', marginLeft: 15, borderRadius: 6}} src={panel.img.src} alt={panel.img.alt}/>
+                                <Row style={{marginLeft: 0}}>
+                                    <img style={{backgroundColor: styles.backgroundHoverColor, height: '5em', width: '5em', borderRadius: 6}} src={panel.img.src} alt={panel.img.alt}/>
                                     <Col>
                                         <a
                                         href={panel.link}
@@ -40,7 +39,6 @@ class DisplayPage extends Component {
                                         <b>{panel.description}</b>
                                     </Col>
                                 </Row>
-                                
                                 <hr/>
                                 {panel.bulletPoints.map(p =>
                                     <p key={p} style={{margin: 0}}>• {p}</p>

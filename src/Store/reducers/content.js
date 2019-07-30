@@ -26,7 +26,11 @@ let initialState = {
                     {
                         name: 'Tech Blogs',
                         link: '/blogs/tech'
-                    }
+                    },
+                    {
+                        name: 'Personal Blogs',
+                        link: '/blogs/personal'
+                    },
                 ]
             },
         ]
@@ -232,6 +236,10 @@ let initialState = {
             title: 'Tech Blogs',
             subtitle: 'Tutorials and Solved Issues',
         },
+        personalBlogs: {
+            title: 'Personal Blogs',
+            subtitle: 'Interesting Events and Life Lessons',
+        },
     },
     landingPage: {
         home: {
@@ -255,6 +263,10 @@ let initialState = {
                             name: 'Email',
                             link: 'mailto:albert.kong00@gmail.com',
                         },
+                        {
+                            name: 'LinkedIn',
+                            link: 'https://www.linkedin.com/in/albert-kong'
+                        }
                     ],
                 },
                 {
