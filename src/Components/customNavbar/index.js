@@ -9,11 +9,12 @@ import * as loadStyles from 'Utils/loadStyles';
 import * as staticStyles from 'Utils/staticStyles'
 import LandingPage from 'Components/landingPage';
 import DisplayPage from 'Components/displayPage';
+// import * as styles from 'Utils/styleVariables.scss'
 import './customNavbar.scss';
 
 class CustomNavbar extends Component {
     render() {
-
+        const { items } = this.props.data;
         return (
             <div className='custom-navbar'>
                 <Navbar collapseOnSelect fixed='top' expand="lg">
@@ -21,10 +22,18 @@ class CustomNavbar extends Component {
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     <Navbar.Collapse id='responsive-navbar-nav'>
                         <Nav className='ml-auto'>
-                            <Nav.Link onClick={() => this.props.setNextPage('/experience')}>Experience</Nav.Link>
-                            <Nav.Link onClick={() => this.props.setNextPage('/education')}>Education</Nav.Link>
-                            <Nav.Link onClick={() => this.props.setNextPage('/activities')}>Activities</Nav.Link>
-                            <Nav.Link onClick={() => this.props.setNextPage('/blogs')}>Tech Blogs</Nav.Link>
+                            {items.map(i => {
+                                if(!i.items) {
+                                    return <Nav.Link onClick={() => this.props.setNextPage(i.link)}>{i.name}</Nav.Link>
+                                }
+                                else {
+                                    return (
+                                        <NavDropdown alignRight title={i.name}>
+                                            {i.items.map(j => <NavDropdown.Item style={{textAlign: 'right'}} onClick={() => this.props.setNextPage(j.link)}>{j.name}</NavDropdown.Item>)}
+                                        </NavDropdown>
+                                    )
+                                }
+                            })}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -35,7 +44,7 @@ class CustomNavbar extends Component {
 
 const mapStateToProps = state => {
     return {
-        
+        data: state.content.navbar
     };
 };
 

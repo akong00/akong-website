@@ -6,6 +6,31 @@ let initialState = {
         curPage: window.location.hash.slice(1),
         nextPage: '',
     },
+    navbar: {
+        items: [
+            {
+                name: 'Experience',
+                link: '/experience'
+            },
+            {
+                name: 'Education',
+                link: '/education'
+            },
+            {
+                name: 'Activities',
+                link: '/activities'
+            },
+            {
+                name: 'Blogs',
+                items: [
+                    {
+                        name: 'Tech Blogs',
+                        link: '/blogs/tech'
+                    }
+                ]
+            },
+        ]
+    },
     displayPage: {
         experience: {
             categories: [
@@ -188,7 +213,7 @@ let initialState = {
                     ],
                 },
             ],
-        },
+        }
     },
     hero: {
         experience: {
@@ -201,11 +226,11 @@ let initialState = {
         },
         activities: {
             title: 'Activities',
-            subtitile: 'Student Organizations and Volunteering',
+            subtitle: 'Student Organizations and Volunteering',
         },
-        blogs: {
+        techBlogs: {
             title: 'Tech Blogs',
-            subtitile: 'Tutorials and Solved Issues',
+            subtitle: 'Tutorials and Solved Issues',
         },
     },
     landingPage: {
@@ -267,6 +292,9 @@ let initialState = {
             ]
         },
     },
+    blog: {
+        curPost: '',
+    },
 };
 
 function setNextPage(state, action) {
@@ -280,11 +308,24 @@ function setNextPage(state, action) {
     return nextState;
 }
 
+function setBlogPost(state, action) {
+    let nextState = {
+        ...state,
+        blog: {
+            ...state.blog,
+            curPost: action.payload.type,
+        }
+    }
+    return nextState;
+}
+
 function content(state = initialState, action) {
     switch (action.type) {
         case 'SET_NEXT_PAGE':
             return setNextPage(state, action);
-        
+        case 'SET_BLOG_POST':
+            return setBlogPost(state, action);
+
         default:
             return state;
     }

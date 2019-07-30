@@ -6,13 +6,17 @@ div.custom-navbar {
         box-shadow: $boxShadow;
     }
 
-    a, span, div.dropdown-menu {
+    a, span {
         border-radius: 4px;
         color: $textColor !important;
         background-color: $backgroundColor;
     }
 
-    a:hover {
+    a:hover, a.dropdown-item:hover {
         background-color: $backgroundHoverColor;
+    }
+
+    a.dropdown-item, div.dropdown-menu {
+        background-color: $backgroundColor2;
     }
 }

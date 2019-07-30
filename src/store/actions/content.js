@@ -6,3 +6,10 @@ export function setNextPage(nextPage) {
         payload: { nextPage }
     };
 }
+
+export function setBlogPost(post) {
+    return {
+        type: ActionTypes.SET_BLOG_POST,
+        payload: { post }
+    };
+}

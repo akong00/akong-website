@@ -9,6 +9,8 @@ import * as staticStyles from 'Utils/staticStyles'
 import LandingPage from 'Components/landingPage';
 import DisplayPage from 'Components/displayPage';
 import CustomNavbar from 'Components/customNavbar';
+import Blog from 'Components/blog';
+import Post from 'Components/blog/post.js';
 
 class Content extends Component {
     // componentWillMount() {
@@ -38,7 +40,7 @@ class Content extends Component {
                     return (
                         <div>
                             <div className='navbar-container'>
-                                {window.location.hash.slice(1) !== '/' && 
+                                {window.location.pathname !== '/' && 
                                 <div style={{height: 56, opacity: nextPage === '/' ? opacity : 1}}>
                                     <CustomNavbar />
                                 </div>
@@ -49,6 +51,8 @@ class Content extends Component {
                                 <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
                                 <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
                                 <Route exact path='/activities' render={() => <DisplayPage id={'activities'} />} />
+                                <Route exact path='/blogs/:type' render={({match}) => <Blog id={match.params.type}/>} />
+                                <Route exact path='/blogs/post/:name' render={({match}) => <Post id={match.params.type}/>} />
                                 {/* <div style={curPage !== '/' ? hiddenStyle : null}><LandingPage id={'home'} /></div>
                                 <div style={curPage !== '/experience' ? hiddenStyle : null}><DisplayPage id={'experience'} /></div>
                                 <div style={curPage !== '/education' ? hiddenStyle : null}><DisplayPage id={'education'} /></div> */}
@@ -71,7 +75,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage))
+        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
+        setBlogType: (type) => dispatch(actions.setBlogType(type)),
     };
 };
 
