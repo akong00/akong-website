@@ -226,11 +226,11 @@ let initialState = {
         },
         activities: {
             title: 'Activities',
-            subtitile: 'Student Organizations and Volunteering',
+            subtitle: 'Student Organizations and Volunteering',
         },
-        blogs: {
+        techBlogs: {
             title: 'Tech Blogs',
-            subtitile: 'Tutorials and Solved Issues',
+            subtitle: 'Tutorials and Solved Issues',
         },
     },
     landingPage: {
