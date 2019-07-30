@@ -29,7 +29,7 @@ Images are not being rendered when the image path is passed as a prop with Redux
 
 
 ## Solution
-Use require() along with a template literal and placeholder in the redux when passing in the image path to the component. Using require inside the component will only work for relative paths inside the same directory.
+Use require() along with a template literal and placeholder in the redux when passing in the image path to the component. Using require inside the component will only work for relative paths inside the same directory, but using it in the redux allows absolute and relative paths in any directory.
 
 <pre><code>const img = {
     src: require(\${'./images/example.png'}), 
