@@ -17,7 +17,7 @@ class CustomNavbar extends Component {
         const { items } = this.props.data;
         return (
             <div className='custom-navbar'>
-                <Navbar collapseOnSelect fixed='top' expand="lg">
+                <Navbar collapseOnSelect fixed='top' expand="md">
                     <Navbar.Brand style={{cursor: 'pointer'}} onClick={() => this.props.setNextPage('/')}>ALBERT KONG</Navbar.Brand>
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     <Navbar.Collapse id='responsive-navbar-nav'>

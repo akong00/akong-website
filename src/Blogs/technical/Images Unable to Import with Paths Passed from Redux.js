@@ -18,8 +18,7 @@ const img = {
     src: '',
     alt: '',
 };
-const content = "## Issue\nImages are not being rendered when the image path is passed as a prop with Redux. The issue persists sometimes even when using require inside the component.\n### Redux"
-/*`
+const content = `
 ## Issue
 Images are not being rendered when the image path is passed as a prop with Redux. The issue persists sometimes even when using require inside the component.
 
@@ -43,7 +42,7 @@ Use require() along with a template literal and placeholder in the redux when pa
     src: require(\${'./images/example.png'}), 
     alt: 'example_image'
 }</code></pre>
-`;*/
+`;
 
 const post = {
     title,
