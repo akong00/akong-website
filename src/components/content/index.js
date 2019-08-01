@@ -12,6 +12,10 @@ import Blog from 'Components/blog';
 import Post from 'Components/post';
 
 class Content extends Component {
+    componentWillMount() {
+        this.props.getPosts({});
+    }
+
     render() {
         const { curPage, nextPage } = this.props.content;
         const { pageLoadStyle, pageExitStyle } = loadStyles;
@@ -63,6 +67,7 @@ const mapDispatchToProps = dispatch => {
     return {
         setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
         setBlogType: (type) => dispatch(actions.setBlogType(type)),
+        getPosts: (query) => dispatch(actions.getPosts(query)),
     };
 };
 

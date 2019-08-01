@@ -38,10 +38,10 @@ class Post extends Component {
     }
 
     render() {
-        const { type, id } = this.props;
-        const post = blogs[type][id];
+        const { type, id, posts } = this.props;
         const postStyle = staticStyles.createPostStyle();
-
+        const post = posts[id];
+        if(!post) return <div/>
         return (
             <div className='post' id={id}>
                 <div style={postStyle}>
@@ -62,6 +62,7 @@ class Post extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        posts: state.blog.posts
     };
 };
 

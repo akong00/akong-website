@@ -24,8 +24,12 @@ class Blog extends Component {
     handleSubmit = (e) => {
         this.props.createPost(this.state);
     }
+    componentWillMount() {
+        this.props.getPosts({ type: this.props.type });
+    }
+
     render() {
-        const { type } = this.props;
+        const { type, posts } = this.props;
         return (
             <div className='blog' id={type}>
                 <Hero id={type + 'Blogs'}/>
@@ -35,15 +39,16 @@ class Blog extends Component {
                     <button onClick={this.handleSubmit}>Submit</button>
                 </div>
                 <Row>
-                {Object.keys(blogs[type]).map(postKey => {
-                const post = blogs[type][postKey];
+                {Object.keys(posts).map(postKey => {
+                const post = posts[postKey];
+                
                 return (
                     <Col key={postKey} xs={12} md={6} style={{padding: 15}}>
                         <div className='post-container' style={{height: '90%', padding: 20, margin: 20, boxShadow: styles.boxShadow}}>
                             <Row>
-                                {post.img.src &&
+                                {/* {post.img.src &&
                                 <img style={{backgroundColor: styles.backgroundHoverColor, height: '5em', width: '5em', marginLeft: 15, borderRadius: 6}} src={post.img.src} alt={post.img.alt}/>
-                                }
+                                } */}
                                 <Col>
                                     <a href='#' onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}>
                                         <h4>{post.title}</h4>
@@ -93,13 +98,16 @@ class Blog extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
+    return {
+        posts: state.blog.posts
+    };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
-        createPost: (post) => dispatch(actions.createPost(post))
+        createPost: (post) => dispatch(actions.createPost(post)),
+        getPosts: (params) => dispatch(actions.getPosts(params))
     };
 };
 
