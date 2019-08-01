@@ -12,11 +12,28 @@ import * as styles from 'Utils/styleVariables.scss';
 import './blog.scss';
 
 class Blog extends Component {
+    state = {
+        title: '',
+        content: ''
+    }
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+    handleSubmit = (e) => {
+        this.props.createPost(this.state);
+    }
     render() {
         const { type } = this.props;
         return (
             <div className='blog' id={type}>
                 <Hero id={type + 'Blogs'}/>
+                <div>
+                    <input type='text' id='title' onChange={this.handleChange}/>
+                    <input type='text' id='content' onChange={this.handleChange}/>
+                    <button onClick={this.handleSubmit}>Submit</button>
+                </div>
                 <Row>
                 {Object.keys(blogs[type]).map(postKey => {
                 const post = blogs[type][postKey];
@@ -81,7 +98,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage))
+        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
+        createPost: (post) => dispatch(actions.createPost(post))
     };
 };
 

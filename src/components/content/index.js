@@ -5,7 +5,6 @@ import { Motion } from 'react-motion';
 import actions from 'Store/actions';
 
 import * as loadStyles from 'Utils/loadStyles';
-import * as staticStyles from 'Utils/staticStyles'
 import LandingPage from 'Components/landingPage';
 import DisplayPage from 'Components/displayPage';
 import CustomNavbar from 'Components/customNavbar';
@@ -13,17 +12,9 @@ import Blog from 'Components/blog';
 import Post from 'Components/post';
 
 class Content extends Component {
-    // componentWillMount() {
-    //     if(window.location.pathname === '/') {
-    //         window.location.hash = '#/'
-    //     }
-    //     window.addEventListener("hashchange", () => {this.props.setNextPage(window.location.hash.slice(1))});
-    // }
-
     render() {
         const { curPage, nextPage } = this.props.content;
         const { pageLoadStyle, pageExitStyle } = loadStyles;
-        // const hiddenStyle = staticStyles.hiddenStyle;
         return (
             <div className='content'>
                 <Motion
@@ -34,7 +25,6 @@ class Content extends Component {
                     //transition into next page
                     if(nextPage && opacity === 0) {
                         this.props.setNextPage('');
-                        // window.location.hash = '#' + nextPage; //†
                         return <Redirect push to={nextPage}/>; //∂
                     }
                     return (
@@ -53,10 +43,6 @@ class Content extends Component {
                                 <Route exact path='/activities' render={() => <DisplayPage id={'activities'} />} />
                                 <Route exact path='/blogs/:type' render={({match}) => <Blog type={match.params.type}/>} />
                                 <Route exact path='/blogs/post/:type/:name' render={({match}) => <Post type={match.params.type} id={match.params.name} />} />
-                                {/* <div style={curPage !== '/' ? hiddenStyle : null}><LandingPage id={'home'} /></div>
-                                <div style={curPage !== '/experience' ? hiddenStyle : null}><DisplayPage id={'experience'} /></div>
-                                <div style={curPage !== '/education' ? hiddenStyle : null}><DisplayPage id={'education'} /></div> */}
-                                
                             </div>
                         </div>
                         );
