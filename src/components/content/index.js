@@ -8,6 +8,7 @@ import * as loadStyles from 'Utils/loadStyles';
 import LandingPage from 'Components/landingPage';
 import DisplayPage from 'Components/displayPage';
 import CustomNavbar from 'Components/customNavbar';
+import UserPage from 'Components/userPage';
 import Blog from 'Components/blog';
 import Post from 'Components/post';
 
@@ -45,6 +46,7 @@ class Content extends Component {
                                 <Route exact path='/experience' render={() => <DisplayPage id={'experience'} />} />
                                 <Route exact path='/education' render={() => <DisplayPage id={'education'} />} />
                                 <Route exact path='/activities' render={() => <DisplayPage id={'activities'} />} />
+                                <Route exact path='/user' render={() => <UserPage />} />
                                 <Route exact path='/blogs/:type' render={({match}) => <Blog type={match.params.type}/>} />
                                 <Route exact path='/blogs/post/:type/:name' render={({match}) => <Post type={match.params.type} id={match.params.name} />} />
                             </div>

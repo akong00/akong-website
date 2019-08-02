@@ -7,8 +7,11 @@ export function createPost(post) {
         const firestore = getFirestore();
         firestore.collection('blogs').doc(post.title).set({
             ...post,
-            authorFirstName: 'Albert',
+            type: 'tech',
+            author: 'Albert',
             authorLastName: 'Kong',
+            date: 'today',
+            subtitle: '',
             tags: ['asdf1', 'asdf2', 'asdf3'],
         }).then(() => {
             dispatch({
@@ -30,14 +33,14 @@ export function getPosts(params) {
         if(params.before) query = query.where('ts', '<=', params.before);
 
         query.get().then(results => {
-            const posts = fbParse(results)
+            const posts = fbParse(results);
             dispatch({
                 type: ActionTypes.GET_POSTS,
                 payload: { posts }
             });
         })
         .catch(e => {
-            console.log('error: ', e)
-        })
+            console.log('error: ', e);
+        });
     }
 }
