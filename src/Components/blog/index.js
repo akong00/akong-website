@@ -43,7 +43,8 @@ class Blog extends Component {
                                 <img style={{backgroundColor: styles.backgroundHoverColor, height: '5em', width: '5em', marginLeft: 15, borderRadius: 6}} src={post.img.src} alt={post.img.alt}/>
                                 } */}
                                 <Col>
-                                    <a href='/#' onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}>
+                                {/*eslint-disable-next-line*/}
+                                    <a href='#' onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}>
                                         <h4>{post.title}</h4>
                                     </a>
                                     <b>{post.subtitle}</b>
