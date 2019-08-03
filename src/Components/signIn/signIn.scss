@@ -1,0 +1,21 @@
+@import 'Utils/styleVariables.scss';
+div.sign-in {
+    button {
+        padding: 5px;
+        border-radius: 5px;
+        background-color: $backgroundColor;
+        color: $textColor;
+    }
+
+    div.row div {
+        width: 25%;
+    }
+
+    input {
+        width: 90%;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: $backgroundColor;
+        color: $textColor;
+    }
+}

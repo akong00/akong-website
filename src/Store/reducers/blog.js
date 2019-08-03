@@ -1,10 +1,11 @@
 let initialState = {
+    curPostKey: '',
     posts: {},
 };
 
 function createPost(state, action) {
-    var nextState = state;
-    return nextState;
+    window.alert('sucessfully created new blog: ', action.payload.post.title)
+    return state;
 }
 
 function getPosts(state, action) {

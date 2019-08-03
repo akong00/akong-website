@@ -1,9 +1,14 @@
 export default function fbParse(results) {
     let p = {};
-    results.forEach(d => {
-        const fields = d._document.proto.fields;
-        p[d.id] = helperParser(fields);
-    })
+    if(results._document) {
+        p = helperParser(results._document.proto.fields);
+    }
+    else {
+        results.forEach(d => {
+            const fields = d._document.proto.fields;
+            p[d.id] = helperParser(fields);
+        })
+    }
     return p;
 }
 
@@ -30,7 +35,7 @@ function helperParser(fields) {
             default:
                 p[fieldKey] = v;
         }
-        return;
+        return 0;
     })
     return p;
 }

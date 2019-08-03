@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import actions from 'Store/actions';
 
 import { Motion, spring } from 'react-motion';
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 import FluidSimulation from 'Components/fluidSimulation';
 import * as staticStyles from 'Utils/staticStyles';
@@ -79,8 +79,9 @@ class LandingPage extends Component {
                                         <a
                                         key={e.name}
                                         href={e.link}
-                                        // rel='noopener noreferrer'
+                                        // eslint-disable-next-line
                                         target='_blank'
+                                        // rel='noopener noreferrer'
                                         >
                                             <p style={{
                                                 ...textStyle,

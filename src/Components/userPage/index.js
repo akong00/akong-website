@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import actions from 'Store/actions';
 
-import { Row, Col, ModalTitle } from 'react-bootstrap';
-import { Motion, spring } from 'react-motion';
-import ReactMarkdown from 'react-markdown/with-html';
+
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
-import blogs from 'Blogs';
 import Hero from 'Components/hero';
-import * as staticStyles from 'Utils/staticStyles';
-import * as styles from 'Utils/styleVariables.scss';
-import { createContentMargin } from '../../Utils/staticStyles';
 import './userPage.scss';
 
 class UserPage extends Component {
     render() {
         const { extraKeys, newPostFields, newPost } = this.props.data;
+        if(!localStorage.getItem('uid')) return <Redirect push to='/'/>;
         return (
             <div className='user-page'>
-                <div >
+                <div style={{width: '80%', margin: 'auto'}}>
                     <Hero id={'userPage'}/>
-
                     <div className='create-blog-post'>
                         <h2>Create Blog Post</h2>
                         <hr/>
@@ -31,36 +26,48 @@ class UserPage extends Component {
                             switch(f.type) {
                                 case 'single':
                                     return (
-                                        <div>
-                                            <h5>{f.name}</h5>
+                                        <div key={f.name}>
+                                            <h4>{f.name}</h4>
                                             <select onChange={e => this.props.setNewPost(f.name, e.target.value)} multiple={f.type === 'multiple'}>
-                                                {f.values.map(v => <option value={v}>{v}</option>)}
+                                                {f.values.map(v => <option key={v} value={v}>{v}</option>)}
                                             </select>
                                         </div>
                                     )
                                 case 'multiple':
                                     return (
-                                        <div>
-                                            <h5>{f.name}</h5>
+                                        <div key={f.name}>
+                                            <h4>{f.name}</h4>
                                             <input type='text' onChange={e => this.props.setNewPost(f.name, e.target.value.replace(' ','').split(','))}/>
                                         </div>
                                     )
                                 default:
                                     return (
-                                        <div>
-                                            <h5>{f.name}</h5>
-                                            <input type={f.type} onChange={e => this.props.setNewPost(f.name, e.target.value)}/>
+                                        <div key={f.name}>
+                                            <h4>{f.name}</h4>
+                                            <input className={f.type === 'date' ? 'date-field' : null} type={f.type} onChange={e => this.props.setNewPost(f.name, e.target.value)}/>
                                         </div>
                                     )
                             }
                             })}
+                            <h4>content</h4>
                             <SimpleMDE
                             className='blog-editor'
                             onChange={e => this.props.setNewPost('content', e)}
                             extraKeys={extraKeys}
                             />
                         </div>
-                        <button onClick={() => this.props.createPost(newPost)}>Create Post</button>
+                        <button
+                        className='submit-button'
+                        onClick={() => {
+                            let flag = true;
+                            Object.values(newPost).map(v => {
+                                if(!v) flag = false;
+                                return 0;
+                            });
+                            if(flag) this.props.createPost(newPost);
+                            else window.alert('Fill out all fields for blog post!');
+                        }}>Create Post</button>
+                        <div style={{height: 80}}/>
                     </div>
                 </div>
             </div>
@@ -70,7 +77,7 @@ class UserPage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        data: state.content.userPage,
+        data: state.content.userPage
     };
 };
 

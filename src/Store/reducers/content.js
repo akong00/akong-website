@@ -1,8 +1,5 @@
-import React from 'react';
-
 let initialState = {
     content: {
-        curPage: window.location.hash.slice(1),
         nextPage: '',
     },
     navbar: {
@@ -278,7 +275,7 @@ let initialState = {
                     colorTheme: ['v','v','b'],
                     title: 'Tech Blogs',
                     body: 'all my babies',
-                    link: '/blogs',
+                    link: '/blogs/tech',
                 },
                 {
                     position: 'top',
@@ -325,7 +322,7 @@ let initialState = {
                 type: 'text',
             },
             {
-                name: 'subtile',
+                name: 'subtitle',
                 type: 'text',
             },
             {
@@ -379,9 +376,8 @@ let initialState = {
             type: 'tech',
             title: '',
             subtitle: '',
-            authorFirstName: '',
-            authorLastName: '',
             date: '',
+            ts: '',
             tags: [],
             content: '',
         },
@@ -406,14 +402,14 @@ function setNewPost(state, action) {
         ts = ts.split("-");
         let date = ts[1]+"/"+ts[2]+"/"+ts[0];
         ts = new Date(date).getTime();
-        
+
         nextState = {
             ...state,
             userPage: {
                 ...state.userPage,
                 newPost:{
                     ...state.userPage.newPost,
-                    date: date.getDa,
+                    date: date,
                     ts: ts,
                 }
             }
@@ -431,8 +427,13 @@ function setNewPost(state, action) {
             }
         }
     }
-
+    console.log(nextState)
     return nextState;
+}
+
+function setErrorAlert(state, action) {
+    window.alert('ERROR: ', action.payload.error);
+    return state;
 }
 
 function content(state = initialState, action) {
@@ -441,6 +442,8 @@ function content(state = initialState, action) {
             return setNextPage(state, action);
         case 'SET_NEW_POST':
             return setNewPost(state, action);
+        case 'SET_ERROR_ALERT':
+            return setErrorAlert(state, action);
 
         default:
             return state;

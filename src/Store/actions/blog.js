@@ -4,15 +4,25 @@ import fbParse from 'Utils/fbParse';
 export function createPost(post) {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         // make async call
-        const firestore = getFirestore();
-        firestore.collection('blogs').doc(post.title).set(post)
+        const firebase = getFirebase();
+        const state = getState();
+        firebase.firestore().collection('blogs').doc(post.title).set({
+            ...post,
+            author: state.user.firstName + state.user.lastName,
+            authorId: state.user.uid,
+        })
         .then(() => {
             dispatch({
                 type: ActionTypes.CREATE_POST,
                 payload: { post }
             });
         }).catch(e => {
-            console.log('error: ', e)
+            dispatch({
+                type: ActionTypes.SET_ERROR_ALERT,
+                payload: {
+                    error: e
+                }
+            })
         })
     }
 }
@@ -33,7 +43,12 @@ export function getPosts(params) {
             });
         })
         .catch(e => {
-            console.log('error: ', e);
+            dispatch({
+                type: ActionTypes.SET_ERROR_ALERT,
+                payload: {
+                    error: e
+                }
+            })
         });
     }
 }

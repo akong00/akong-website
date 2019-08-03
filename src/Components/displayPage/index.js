@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from 'Store/actions';
-
 import { Row, Col } from 'react-bootstrap';
-import { Motion, spring } from 'react-motion';
-
 
 import Hero from 'Components/hero';
 import * as styles from 'Utils/styleVariables.scss';
@@ -30,6 +27,7 @@ class DisplayPage extends Component {
                                     <Col>
                                         <a
                                         href={panel.link}
+                                        // eslint-disable-next-line
                                         target='_blank'
                                         // rel='noopener noreferrer'
                                         >
