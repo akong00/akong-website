@@ -1,0 +1,26 @@
+@import 'Utils/styleVariables.scss';
+div.user-page {
+    div.blog-editor {
+        div.CodeMirror-wrap, pre {
+            background-color: $backgroundColor;
+
+            div.CodeMirror-cursor {
+                border-color: $textColor2;
+            }
+
+            span.CodeMirror-selectedtext {
+                background-color: $highlightColor !important;
+            }
+        }
+
+        div.editor-toolbar {
+            button.active, button:hover {
+                background-color: $backgroundHoverColor;
+            }
+
+            button i.fa {
+                color: $textColor;
+            }
+        }
+    }
+}

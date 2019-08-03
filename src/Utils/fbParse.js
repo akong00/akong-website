@@ -30,6 +30,7 @@ function helperParser(fields) {
             default:
                 p[fieldKey] = v;
         }
+        return;
     })
     return p;
 }

@@ -33,11 +33,6 @@ class Blog extends Component {
         return (
             <div className='blog' id={type}>
                 <Hero id={type + 'Blogs'}/>
-                <div>
-                    <input type='text' id='title' onChange={this.handleChange}/>
-                    <input type='text' id='content' onChange={this.handleChange}/>
-                    <button onClick={this.handleSubmit}>Submit</button>
-                </div>
                 <Row>
                 {Object.keys(posts).map(postKey => {
                 const post = posts[postKey];

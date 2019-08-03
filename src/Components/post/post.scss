@@ -38,7 +38,7 @@ div.post {
         border-left: 2px inset $textColor2;
     }
 
-    p {
+    div, p {
         margin: 0;
         font-size: 1.3rem;
 
@@ -59,9 +59,7 @@ div.post {
             color: $textColor;
         }
     }
-
     
-
     th, td {
         border: 1px solid $textColor2;
     }

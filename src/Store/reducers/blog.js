@@ -1,5 +1,4 @@
 let initialState = {
-    curPostKey: '',
     posts: {},
 };
 

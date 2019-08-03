@@ -5,15 +5,8 @@ export function createPost(post) {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         // make async call
         const firestore = getFirestore();
-        firestore.collection('blogs').doc(post.title).set({
-            ...post,
-            type: 'tech',
-            author: 'Albert',
-            authorLastName: 'Kong',
-            date: 'today',
-            subtitle: '',
-            tags: ['asdf1', 'asdf2', 'asdf3'],
-        }).then(() => {
+        firestore.collection('blogs').doc(post.title).set(post)
+        .then(() => {
             dispatch({
                 type: ActionTypes.CREATE_POST,
                 payload: { post }
