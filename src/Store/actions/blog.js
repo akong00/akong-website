@@ -8,7 +8,7 @@ export function createPost(post) {
         const state = getState();
         firebase.firestore().collection('blogs').doc(post.title).set({
             ...post,
-            author: state.user.firstName + state.user.lastName,
+            author: state.user.firstName + ' ' + state.user.lastName,
             authorId: state.user.uid,
         })
         .then(() => {

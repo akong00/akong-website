@@ -42,7 +42,7 @@ class Post extends Component {
                 <div style={postStyle}>
                     <h1>{post.title}</h1>
                     <p><b>{post.subtitle}</b></p>
-                    <small><i>Posted by {post.authorFirstName} {post.authorLastName} on {post.date}</i></small>
+                    <small><i>Posted by {post.author} on {post.date}</i></small>
                     <hr/>
                     <div>
                         <ReactMarkdown
