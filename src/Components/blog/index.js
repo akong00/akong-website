@@ -22,9 +22,9 @@ class Blog extends Component {
     handleSubmit = (e) => {
         this.props.createPost(this.state);
     }
-    componentWillMount() {
-        this.props.getPosts({ type: this.props.type });
-    }
+    // componentWillMount() {
+    //     this.props.getPosts({ type: this.props.type });
+    // }
 
     render() {
         const { type, posts } = this.props;
@@ -34,7 +34,7 @@ class Blog extends Component {
                 <Row>
                 {Object.keys(posts).map(postKey => {
                 const post = posts[postKey];
-                
+                if(post.type !== type) return null;
                 return (
                     <Col key={postKey} xs={12} md={6} style={{padding: 15}}>
                         <div className='post-container' style={{height: '90%', padding: 20, margin: 20, boxShadow: styles.boxShadow, overflowY: 'hidden'}}>
@@ -44,7 +44,7 @@ class Blog extends Component {
                                 } */}
                                 <Col>
                                 {/*eslint-disable-next-line*/}
-                                    <a href='#' onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}>
+                                    <a onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}>
                                         <h4>{post.title}</h4>
                                     </a>
                                     <b>{post.subtitle}</b>
@@ -75,12 +75,12 @@ class Blog extends Component {
                             borderRadius: 3,
                             height: 200,
                             padding: 10,
-                            overflowX: 'hidden',
+                            overflowY: 'hidden',
                             backgroundImage: 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(255,255,255,0.1), rgba(255,255,255,0.4), ' + styles.textColor + ')',
                             }}
                             >
                                 <ReactMarkdown
-                                source={post.content}
+                                source={post.content.slice(0,600)}
                                 escapeHtml={false}
                                 />
 
@@ -105,7 +105,7 @@ const mapDispatchToProps = dispatch => {
     return {
         setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
         createPost: (post) => dispatch(actions.createPost(post)),
-        getPosts: (params) => dispatch(actions.getPosts(params))
+        // getPosts: (params) => dispatch(actions.getPosts(params))
     };
 };
 

@@ -19,6 +19,10 @@ class Content extends Component {
         this.props.setUser();
     }
 
+    // componentWillUnmount() {
+    //     this.props.setUser.destroy();
+    // }
+
     render() {
         const { nextPage } = this.props.content;
         const { pageLoadStyle, pageExitStyle } = loadStyles;

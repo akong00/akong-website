@@ -16,7 +16,8 @@ export function createPost(post) {
                 type: ActionTypes.CREATE_POST,
                 payload: { post }
             });
-        }).catch(e => {
+        })
+        .catch(e => {
             dispatch({
                 type: ActionTypes.SET_ERROR_ALERT,
                 payload: {
@@ -27,15 +28,14 @@ export function createPost(post) {
     }
 }
 
-export function getPosts(params) {
+export function getPosts(params = null) {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         let query = getFirestore().collection('blogs');
-        if(params.type) query = query.where('type', '==', params.type);
         if(params.tags) params.tags.map(t => query = query.where('tags', 'array-contains', t));
         if(params.after) query = query.where('ts', '>=', params.after);
         if(params.before) query = query.where('ts', '<=', params.before);
-
-        query.get().then(results => {
+        query.orderBy('ts','desc').get()
+        .then(results => {
             const posts = fbParse(results);
             dispatch({
                 type: ActionTypes.GET_POSTS,

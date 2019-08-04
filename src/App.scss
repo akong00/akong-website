@@ -3,12 +3,13 @@
 div.App {
     font-family: 'Righteous';
 
-    a {
+    a, a:not([href]) {
         color: $anchorColor;
         text-decoration: none;
+        cursor: pointer;
     }
 
-    a:hover {
+    a:hover, a:not([href]):hover {
         color: $hoverColor;
     }
 

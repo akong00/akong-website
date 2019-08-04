@@ -16,7 +16,15 @@ div.custom-navbar {
         background-color: $backgroundHoverColor;
     }
 
-    a.dropdown-item, div.dropdown-menu {
+    a.dropdown-item, .dropdown-menu {
         background-color: $backgroundColor2;
+    }
+
+    .dropdown-menu {
+        margin: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
     }
 }
