@@ -44,6 +44,7 @@ class Post extends Component {
                     <p><b>{post.subtitle}</b></p>
                     <small><i>Posted by {post.author} on {post.date}</i></small>
                     <hr/>
+                    {post.image && console.log(post.image)}
                     <div>
                         <ReactMarkdown
                         source={post.content}

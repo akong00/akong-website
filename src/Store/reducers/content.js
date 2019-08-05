@@ -213,7 +213,7 @@ let initialState = {
                     ],
                 },
             ],
-        }
+        },
     },
     hero: {
         experience: {
@@ -227,6 +227,10 @@ let initialState = {
         activities: {
             title: 'Activities',
             subtitle: 'Student Organizations and Volunteering',
+        },
+        about: {
+            title: 'About Me',
+            subtitle: ':)',
         },
         techBlogs: {
             title: 'Tech Blogs',
@@ -250,6 +254,11 @@ let initialState = {
                     colorTheme: ['w'],
                     splatSize: 10,
                     title: 'Albert Kong',
+                    // link: '/blogs/post/personal/about-me',
+                    img: {
+                        src: require('Images/pro_pic.png'),
+                        alt: 'Albert_Kong_Picture',
+                    },
                     body: [
                         {
                             name: 'Github',
@@ -257,7 +266,7 @@ let initialState = {
                         },
                         {
                             name: 'Resume',
-                            link: '#',
+                            link: 'https://drive.google.com/file/d/1q7Ta5tfoHs_kmn_xiYKEUsxz1EGn8E6u/view',
                         },
                         {
                             name: 'Email',
