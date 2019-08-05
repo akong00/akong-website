@@ -35,11 +35,11 @@ class CustomNavbar extends Component {
                                 role === 'capo' ? '♖' :
                                 role === 'member' ? '♘' : '♙'
                                 ) + ' ' + firstName + ' ' + lastName}>
-                                <Nav.Link onClick={() => this.props.setNextPage('/user')}>User Portal</Nav.Link>
-                                <Nav.Link onClick={() => {
+                                <NavDropdown.Item onClick={() => this.props.setNextPage('/user')}>User Portal</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => {
                                     this.props.logoutUser();
                                     this.props.setNextPage('/')
-                                }}>Sign Out</Nav.Link>
+                                }}>Sign Out</NavDropdown.Item>
                             </NavDropdown>
                             }
                         </Nav>
