@@ -315,7 +315,11 @@ let initialState = {
     },
     userPage: {
         extraKeys: {
-            Enter: e => e.replaceSelection('\\n\n'),
+            'Enter': e => e.replaceSelection(' \\n\n'),
+            'Ctrl-C': e => {
+                e.replaceSelection('```\n');
+                e.replaceSelection('\n```\n', 'start');
+            },
         },
         newPostFields: [
             {
