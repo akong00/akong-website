@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
-import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Motion } from 'react-motion';
 import actions from 'Store/actions';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
-import * as loadStyles from 'Utils/loadStyles';
-import * as staticStyles from 'Utils/staticStyles'
-import LandingPage from 'Components/landingPage';
-import DisplayPage from 'Components/displayPage';
-// import * as styles from 'Utils/styleVariables.scss'
 import './customNavbar.scss';
 
 class CustomNavbar extends Component {
     render() {
         const { items } = this.props.data;
+        const { uid, role, firstName, lastName } = this.props.user;
         return (
             <div className='custom-navbar'>
                 <Navbar collapseOnSelect fixed='top' expand="md">
@@ -24,16 +18,30 @@ class CustomNavbar extends Component {
                         <Nav className='ml-auto'>
                             {items.map(i => {
                                 if(!i.items) {
-                                    return <Nav.Link onClick={() => this.props.setNextPage(i.link)}>{i.name}</Nav.Link>
+                                    return <Nav.Link key={i.name} onClick={() => this.props.setNextPage(i.link)}>{i.name}</Nav.Link>
                                 }
                                 else {
                                     return (
-                                        <NavDropdown alignRight title={i.name}>
-                                            {i.items.map(j => <NavDropdown.Item style={{textAlign: 'right'}} onClick={() => this.props.setNextPage(j.link)}>{j.name}</NavDropdown.Item>)}
+                                        <NavDropdown key={i.name} alignRight title={i.name}>
+                                            {i.items.map(j => <NavDropdown.Item key={j.name} onClick={() => this.props.setNextPage(j.link)}>{j.name}</NavDropdown.Item>)}
                                         </NavDropdown>
                                     )
                                 }
                             })}
+                            {uid &&
+                            <NavDropdown alignRight title={
+                                (
+                                role === 'boss' ? '♔' :
+                                role === 'capo' ? '♖' :
+                                role === 'member' ? '♘' : '♙'
+                                ) + ' ' + firstName + ' ' + lastName}>
+                                <Nav.Link onClick={() => this.props.setNextPage('/user')}>User Portal</Nav.Link>
+                                <Nav.Link onClick={() => {
+                                    this.props.logoutUser();
+                                    this.props.setNextPage('/')
+                                }}>Sign Out</Nav.Link>
+                            </NavDropdown>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -44,13 +52,15 @@ class CustomNavbar extends Component {
 
 const mapStateToProps = state => {
     return {
-        data: state.content.navbar
+        data: state.content.navbar,
+        user: state.user
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage))
+        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
+        logoutUser: () => dispatch(actions.logoutUser()),
     };
 };
 

@@ -133,7 +133,7 @@ export function createTextStyle(section) {
         case 'center':
             r.marginRight = 'auto';
             r.marginLeft = 'auto';
-            r.marginTop = '1em';
+            r.margin = '0.4em auto 0.3em';
             r.maxWidth = '7em';
             r.cursor = 'default';
             r.hover = 'white';
@@ -156,6 +156,6 @@ export function createPostStyle() {
     else if(width > 600) r.width = 460;
     else if(width > 400) r.margin = 50;
     else r.margin = 15;
-    
+
     return r;
 }

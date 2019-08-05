@@ -1,9 +1,5 @@
-import React from 'react';
-import * as images from 'Images';
-
 let initialState = {
     content: {
-        curPage: window.location.hash.slice(1),
         nextPage: '',
     },
     navbar: {
@@ -217,7 +213,7 @@ let initialState = {
                     ],
                 },
             ],
-        }
+        },
     },
     hero: {
         experience: {
@@ -232,6 +228,10 @@ let initialState = {
             title: 'Activities',
             subtitle: 'Student Organizations and Volunteering',
         },
+        about: {
+            title: 'About Me',
+            subtitle: ':)',
+        },
         techBlogs: {
             title: 'Tech Blogs',
             subtitle: 'Tutorials and Solved Issues',
@@ -239,6 +239,10 @@ let initialState = {
         personalBlogs: {
             title: 'Personal Blogs',
             subtitle: 'Interesting Events and Life Lessons',
+        },
+        userPage: {
+            title: 'User Portal',
+            subtitle: 'Site Content and Settings',
         },
     },
     landingPage: {
@@ -250,6 +254,11 @@ let initialState = {
                     colorTheme: ['w'],
                     splatSize: 10,
                     title: 'Albert Kong',
+                    // link: '/blogs/post/personal/about-me',
+                    img: {
+                        src: require('Images/pro_pic.png'),
+                        alt: 'Albert_Kong_Picture',
+                    },
                     body: [
                         {
                             name: 'Github',
@@ -257,7 +266,7 @@ let initialState = {
                         },
                         {
                             name: 'Resume',
-                            link: '#',
+                            link: 'https://drive.google.com/file/d/1q7Ta5tfoHs_kmn_xiYKEUsxz1EGn8E6u/view',
                         },
                         {
                             name: 'Email',
@@ -275,7 +284,7 @@ let initialState = {
                     colorTheme: ['v','v','b'],
                     title: 'Tech Blogs',
                     body: 'all my babies',
-                    link: '/blogs',
+                    link: '/blogs/tech',
                 },
                 {
                     position: 'top',
@@ -304,8 +313,87 @@ let initialState = {
             ]
         },
     },
-    blog: {
-        curPost: '',
+    userPage: {
+        extraKeys: {
+            'Enter': e => e.replaceSelection(' \\n\n'),
+            'Ctrl-C': e => {
+                e.replaceSelection('```\n');
+                e.replaceSelection('\n```\n', 'start');
+            },
+        },
+        newPostFields: [
+            {
+                name: 'type',
+                type: 'single',
+                values: [
+                    'tech',
+                    'personal',
+                ],
+            },
+            {
+                name: 'title',
+                type: 'text',
+            },
+            {
+                name: 'subtitle',
+                type: 'text',
+            },
+            {
+                name: 'date',
+                type: 'date',
+            },
+            {
+                name: 'tags',
+                type: 'multiple',
+                values: [
+                    {
+                        id: 1,
+                        name: 'Issue'
+                    },
+                    {
+                        id: 2,
+                        name: 'Tutorial'
+                    },
+                    {
+                        id: 3,
+                        name: 'React'
+                    },
+                    {
+                        id: 4,
+                        name: 'Javascript'
+                    },
+                    {
+                        id: 5,
+                        name: 'Python'
+                    },
+                    {
+                        id: 6,
+                        name: 'HTML'
+                    },
+                    {
+                        id: 7,
+                        name: 'CSS'
+                    },
+                    {
+                        id: 8,
+                        name: 'SCSS'
+                    },
+                    {
+                        id: 9,
+                        name: 'Github'
+                    },
+                ]
+            }
+        ],
+        newPost: {
+            type: 'tech',
+            title: '',
+            subtitle: '',
+            date: '',
+            ts: '',
+            tags: [],
+            content: '',
+        },
     },
 };
 
@@ -320,23 +408,55 @@ function setNextPage(state, action) {
     return nextState;
 }
 
-function setBlogPost(state, action) {
-    let nextState = {
-        ...state,
-        blog: {
-            ...state.blog,
-            curPost: action.payload.type,
+function setNewPost(state, action) {
+    let nextState = {};
+    if(action.payload.field === 'date') {
+        let ts = action.payload.data;
+        ts = ts.split("-");
+        let date = ts[1]+"/"+ts[2]+"/"+ts[0];
+        ts = new Date(date).getTime();
+
+        nextState = {
+            ...state,
+            userPage: {
+                ...state.userPage,
+                newPost:{
+                    ...state.userPage.newPost,
+                    date: date,
+                    ts: ts,
+                }
+            }
         }
     }
+    else {
+        nextState = {
+            ...state,
+            userPage: {
+                ...state.userPage,
+                newPost:{
+                    ...state.userPage.newPost,
+                    [action.payload.field]: action.payload.data,
+                }
+            }
+        }
+    }
+    console.log(nextState)
     return nextState;
+}
+
+function setErrorAlert(state, action) {
+    window.alert('ERROR: ', action.payload.error);
+    return state;
 }
 
 function content(state = initialState, action) {
     switch (action.type) {
         case 'SET_NEXT_PAGE':
             return setNextPage(state, action);
-        case 'SET_BLOG_POST':
-            return setBlogPost(state, action);
+        case 'SET_NEW_POST':
+            return setNewPost(state, action);
+        case 'SET_ERROR_ALERT':
+            return setErrorAlert(state, action);
 
         default:
             return state;

@@ -3,32 +3,48 @@ import { connect } from 'react-redux';
 import actions from 'Store/actions';
 
 import { Row, Col } from 'react-bootstrap';
-import { Motion, spring } from 'react-motion';
 import ReactMarkdown from 'react-markdown/with-html';
 
 import Hero from 'Components/hero';
-import blogs from 'Blogs';
 import * as styles from 'Utils/styleVariables.scss';
 import './blog.scss';
 
 class Blog extends Component {
+    state = {
+        title: '',
+        content: ''
+    }
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+    handleSubmit = (e) => {
+        this.props.createPost(this.state);
+    }
+    // componentWillMount() {
+    //     this.props.getPosts({ type: this.props.type });
+    // }
+
     render() {
-        const { type } = this.props;
+        const { type, posts } = this.props;
         return (
             <div className='blog' id={type}>
                 <Hero id={type + 'Blogs'}/>
                 <Row>
-                {Object.keys(blogs[type]).map(postKey => {
-                const post = blogs[type][postKey];
+                {Object.keys(posts).map(postKey => {
+                const post = posts[postKey];
+                if(post.type !== type) return null;
                 return (
                     <Col key={postKey} xs={12} md={6} style={{padding: 15}}>
-                        <div className='post-container' style={{height: '90%', padding: 20, margin: 20, boxShadow: styles.boxShadow}}>
+                        <div className='post-container' style={{height: '90%', padding: 20, margin: 20, boxShadow: styles.boxShadow, overflowY: 'hidden'}}>
                             <Row>
-                                {post.img.src &&
+                                {/* {post.img.src &&
                                 <img style={{backgroundColor: styles.backgroundHoverColor, height: '5em', width: '5em', marginLeft: 15, borderRadius: 6}} src={post.img.src} alt={post.img.alt}/>
-                                }
+                                } */}
                                 <Col>
-                                    <a href='#' onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}>
+                                {/*eslint-disable-next-line*/}
+                                    <a onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}>
                                         <h4>{post.title}</h4>
                                     </a>
                                     <b>{post.subtitle}</b>
@@ -53,17 +69,21 @@ class Blog extends Component {
                             </Row>
                             <hr/>
                             <div
-                            className='hoverable'
+                            className='hoverable '
                             onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}
                             style={{
-                            borderRadius: 5,
+                            borderRadius: 3,
+                            height: 200,
+                            padding: 10,
+                            overflowY: 'hidden',
                             backgroundImage: 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(255,255,255,0.1), rgba(255,255,255,0.4), ' + styles.textColor + ')',
                             }}
                             >
                                 <ReactMarkdown
-                                source={post.content.slice(0,200)}
+                                source={post.content.slice(0,600)}
                                 escapeHtml={false}
                                 />
+
                             </div>
                         </div>
                     </Col>
@@ -76,12 +96,16 @@ class Blog extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
+    return {
+        posts: state.blog.posts
+    };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage))
+        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
+        createPost: (post) => dispatch(actions.createPost(post)),
+        // getPosts: (params) => dispatch(actions.getPosts(params))
     };
 };
 

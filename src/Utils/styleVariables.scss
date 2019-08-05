@@ -1,18 +1,29 @@
 $backgroundColor: #282b34;
 $backgroundColor2: #31343d;
+
 $textColor: #ffffff;
 $textColor2: #cccccc;
+
+//react markdown colors
+$h1Color: #00a2ff;
+$h2Color: #5ef7ea;
+$h3Color: #9717ff;
+$h4Color: #ffa622;
+
+$highlightColor: #5d82ad;
 $backgroundHoverColor: #3f424d;
 $anchorColor: #5c95ff;
 $hoverColor: #ffb52b;
 $shadowColor: #464646;
-$boxShadow: 0 0 10px $shadowColor;
+$boxShadow: 0 0 10px $shadowColor ;
 
 :export {
     backgroundColor: $backgroundColor;
     backgroundColor2: $backgroundColor2;
     backgroundHoverColor: $backgroundHoverColor;
     textColor: $textColor;
+    textColor2: $textColor2;
+    highlightColor: $highlightColor;
     anchorColor: $anchorColor;
     hoverColor: $hoverColor;
     shadowColor: $shadowColor;

@@ -9,6 +9,7 @@ div.post {
     h1 {
         font-weight: 1000;
         font-size: 2.5rem;
+        color: $h1Color;
     }
 
     h2 {
@@ -17,6 +18,7 @@ div.post {
         margin: 40px 0 5px 0;
         padding-left: 10px;
         transform: translateX(-15px);
+        color: $h2Color;
         border-left: 5px solid $textColor2;
     }
 
@@ -26,6 +28,7 @@ div.post {
         margin: 20px 0 5px 0;
         padding-left: 10px;
         transform: translateX(-14px);
+        color: $h3Color;
         border-left: 4px dotted $textColor2;
     }
 
@@ -35,11 +38,12 @@ div.post {
         margin: 15px 0 5px 0;
         padding-left: 10px;
         transform: translateX(-12px);
+        color: $h4Color;
         border-left: 2px inset $textColor2;
     }
 
     p {
-        margin: 0;
+        margin: 0 0 20px 0;
         font-size: 1.3rem;
 
         code {
@@ -59,9 +63,7 @@ div.post {
             color: $textColor;
         }
     }
-
     
-
     th, td {
         border: 1px solid $textColor2;
     }

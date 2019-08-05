@@ -7,9 +7,9 @@ export function setNextPage(nextPage) {
     };
 }
 
-export function setBlogPost(post) {
+export function setNewPost(field, data) {
     return {
-        type: ActionTypes.SET_BLOG_POST,
-        payload: { post }
-    };
+        type: ActionTypes.SET_NEW_POST,
+        payload: { field, data }
+    }
 }
