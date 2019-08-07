@@ -55,7 +55,7 @@ class Content extends Component {
                                 <Route exact path='/s' render={() => <SignIn />} />
                                 <Route exact path='/user' render={() => <UserPage />} />
                                 <Route exact path='/blogs/:type' render={({match}) => <Blog type={match.params.type}/>} />
-                                <Route exact path='/blogs/post/:type/:name' render={({match}) => <Post type={match.params.type} id={match.params.name} />} />
+                                <Route exact path='/post/:type/:name' render={({match}) => <Post type={match.params.type} id={match.params.name} />} />
                             </div>
                         </div>
                         );

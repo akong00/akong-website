@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from 'Store/actions';
+import { Row } from 'react-bootstrap';
 
 import ReactMarkdown from 'react-markdown/with-html';
 
 import * as staticStyles from 'Utils/staticStyles';
+import * as styles from 'Utils/styleVariables.scss';
 import './post.scss';
 
 class Post extends Component {
@@ -33,7 +35,7 @@ class Post extends Component {
     }
 
     render() {
-        const { id, posts } = this.props;
+        const { id, posts, user } = this.props;
         const postStyle = staticStyles.createPostStyle();
         const post = posts[id];
         if(!post) return <div/>
@@ -42,7 +44,24 @@ class Post extends Component {
                 <div style={postStyle}>
                     <h1>{post.title}</h1>
                     <p><b>{post.subtitle}</b></p>
-                    <small><i>Posted by {post.author} on {post.date}</i></small>
+                    <Row style={{margin: 0}}>
+                        <small><i>Posted by {post.author} on {post.date}</i></small>
+                        {(user.role === 'boss' || user.role === 'capo') &&
+                        <button onClick={() => {
+                            this.props.setNewPost(post);
+                            this.props.setNextPage('/user');
+                        }}
+                        style={{
+                            marginLeft: 30,
+                            borderRadius: 4,
+                            backgroundColor: styles.backgroundColor,
+                            color: styles.textColor,
+                        }}>
+                            Edit
+                        </button>
+                        }
+                    </Row>
+                    
                     <hr/>
                     {post.image && console.log(post.image)}
                     <div>
@@ -59,13 +78,15 @@ class Post extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        posts: state.blog.posts
+        posts: state.blog.posts,
+        user: state.user
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage))
+        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
+        setNewPost: (post) => dispatch(actions.setNewPost(post)),
     };
 };
 

@@ -331,6 +331,14 @@ let initialState = {
                 ],
             },
             {
+                name: 'published',
+                type: 'single',
+                values: [
+                    'true',
+                    'false',
+                ],
+            },
+            {
                 name: 'title',
                 type: 'text',
             },
@@ -345,48 +353,11 @@ let initialState = {
             {
                 name: 'tags',
                 type: 'multiple',
-                values: [
-                    {
-                        id: 1,
-                        name: 'Issue'
-                    },
-                    {
-                        id: 2,
-                        name: 'Tutorial'
-                    },
-                    {
-                        id: 3,
-                        name: 'React'
-                    },
-                    {
-                        id: 4,
-                        name: 'Javascript'
-                    },
-                    {
-                        id: 5,
-                        name: 'Python'
-                    },
-                    {
-                        id: 6,
-                        name: 'HTML'
-                    },
-                    {
-                        id: 7,
-                        name: 'CSS'
-                    },
-                    {
-                        id: 8,
-                        name: 'SCSS'
-                    },
-                    {
-                        id: 9,
-                        name: 'Github'
-                    },
-                ]
             }
         ],
         newPost: {
             type: 'tech',
+            published: 'true',
             title: '',
             subtitle: '',
             date: '',
@@ -401,20 +372,17 @@ function setNextPage(state, action) {
     let nextState = {
         ...state,
         content: {
-            curPage: state.content.nextPage ? state.content.nextPage : state.content.curPage,
             nextPage: action.payload.nextPage,
         }
     }
     return nextState;
 }
 
-function setNewPost(state, action) {
+function setNewPostField(state, action) {
     let nextState = {};
     if(action.payload.field === 'date') {
-        let ts = action.payload.data;
-        ts = ts.split("-");
-        let date = ts[1]+"/"+ts[2]+"/"+ts[0];
-        ts = new Date(date).getTime();
+        let date = action.payload.data;
+        let ts = new Date(date).getTime();
 
         nextState = {
             ...state,
@@ -440,7 +408,29 @@ function setNewPost(state, action) {
             }
         }
     }
-    console.log(nextState)
+
+    return nextState;
+}
+
+function setNewPost(state, action) {
+    let post = action.payload.post;
+    let date = action.payload.post.date.split("/");
+    let content = action.payload.post.content;
+    date = date[2]+"/"+date[0]+"/"+date[1];
+    content = content.split('\n\n').join('\\n\n');
+
+    let nextState = {
+        ...state,
+        userPage: {
+            ...state.userPage,
+            newPost: {
+                ...post,
+                date: date,
+                content: content,
+            }
+        }
+    };
+
     return nextState;
 }
 
@@ -453,6 +443,8 @@ function content(state = initialState, action) {
     switch (action.type) {
         case 'SET_NEXT_PAGE':
             return setNextPage(state, action);
+        case 'SET_NEW_POST_FIELD':
+            return setNewPostField(state, action);
         case 'SET_NEW_POST':
             return setNewPost(state, action);
         case 'SET_ERROR_ALERT':

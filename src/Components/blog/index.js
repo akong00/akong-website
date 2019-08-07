@@ -34,7 +34,7 @@ class Blog extends Component {
                 <Row>
                 {Object.keys(posts).map(postKey => {
                 const post = posts[postKey];
-                if(post.type !== type) return null;
+                if(post.type !== type || !post.published) return null;
                 return (
                     <Col key={postKey} xs={12} md={6} style={{padding: 15}}>
                         <div className='post-container' style={{height: '90%', padding: 20, margin: 20, boxShadow: styles.boxShadow, overflowY: 'hidden'}}>
@@ -44,7 +44,7 @@ class Blog extends Component {
                                 } */}
                                 <Col>
                                 {/*eslint-disable-next-line*/}
-                                    <a onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}>
+                                    <a onClick={() => this.props.setNextPage('/post/' + type + '/' + postKey)}>
                                         <h4>{post.title}</h4>
                                     </a>
                                     <b>{post.subtitle}</b>
@@ -70,7 +70,7 @@ class Blog extends Component {
                             <hr/>
                             <div
                             className='hoverable '
-                            onClick={() => this.props.setNextPage('post/' + type + '/' + postKey)}
+                            onClick={() => this.props.setNextPage('/post/' + type + '/' + postKey)}
                             style={{
                             borderRadius: 3,
                             height: 200,
