@@ -3,21 +3,41 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import actions from 'Store/actions';
 
-
+import { Row } from 'react-bootstrap';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
 import Hero from 'Components/hero';
 import './userPage.scss';
+import * as styles from 'Utils/styleVariables.scss';
 
 class UserPage extends Component {
     render() {
         const { extraKeys, newPostFields, newPost } = this.props.data;
+        const posts = this.props.posts;
+
         if(!localStorage.getItem('uid')) return <Redirect push to='/'/>;
         return (
             <div className='user-page'>
                 <div style={{width: '80%', margin: 'auto'}}>
                     <Hero id={'userPage'}/>
+                    <div className='unpublished-blog-posts'>
+                        <h2>Unpublished Posts</h2>
+                        <hr/>
+                        {Object.values(posts).map(post => {
+                        if(!post.published) {
+                            return (
+                                <Row style={{margin: 5}}>
+                                    <p style={{color: styles.h1Color}}>{post.title}</p>
+                                    <button style={{padding: 2, marginLeft: 15, height: 30}} onClick={() => this.props.setNewPost(post)}>
+                                        Edit
+                                    </button>
+                                </Row>
+                            )
+                        }
+                        else return null;
+                        })}
+                    </div>
                     <div className='create-blog-post'>
                         <h2>Create Blog Post</h2>
                         <hr/>
@@ -68,7 +88,7 @@ class UserPage extends Component {
                             });
                             if(flag) this.props.createPost(newPost);
                             else window.alert('Fill out all fields for blog post!');
-                        }}>Create Post</button>
+                        }}>Save Changes</button>
                         <div style={{height: 80}}/>
                     </div>
                 </div>
@@ -79,7 +99,8 @@ class UserPage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        data: state.content.userPage
+        data: state.content.userPage,
+        posts: state.blog.posts,
     };
 };
 
@@ -87,6 +108,7 @@ const mapDispatchToProps = dispatch => {
     return {
         setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
         createPost: (post) => dispatch(actions.createPost(post)),
+        setNewPost: (post) => dispatch(actions.setNewPost(post)),
         setNewPostField: (field, data) => dispatch(actions.setNewPostField(field, data)),
     };
 };

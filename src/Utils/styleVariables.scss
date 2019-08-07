@@ -5,10 +5,10 @@ $textColor: #ffffff;
 $textColor2: #cccccc;
 
 //react markdown colors
-$h1Color: #00a2ff;
+$h1Color: #24afff;
 $h2Color: #5ef7ea;
-$h3Color: #9717ff;
-$h4Color: #ffa622;
+$h3Color: #bb68ff;
+$h4Color: #ffa928;
 
 $highlightColor: #5d82ad;
 $backgroundHoverColor: #3f424d;
@@ -21,8 +21,15 @@ $boxShadow: 0 0 10px $shadowColor ;
     backgroundColor: $backgroundColor;
     backgroundColor2: $backgroundColor2;
     backgroundHoverColor: $backgroundHoverColor;
+
     textColor: $textColor;
     textColor2: $textColor2;
+
+    h1Color: $h1Color;
+    h2Color: $h2Color;
+    h3Color: $h3Color;
+    h4Color: $h4Color;
+
     highlightColor: $highlightColor;
     anchorColor: $anchorColor;
     hoverColor: $hoverColor;

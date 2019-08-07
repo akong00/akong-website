@@ -425,6 +425,7 @@ function setNewPost(state, action) {
             ...state.userPage,
             newPost: {
                 ...post,
+                published: action.payload.post.published ? 'true' : 'false',
                 date: date,
                 content: content,
             }
@@ -435,7 +436,7 @@ function setNewPost(state, action) {
 }
 
 function setErrorAlert(state, action) {
-    window.alert('ERROR: ', action.payload.error);
+    window.alert('ERROR: ' + action.payload.error);
     return state;
 }
 

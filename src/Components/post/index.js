@@ -6,7 +6,6 @@ import { Row } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown/with-html';
 
 import * as staticStyles from 'Utils/staticStyles';
-import * as styles from 'Utils/styleVariables.scss';
 import './post.scss';
 
 class Post extends Component {
@@ -53,9 +52,7 @@ class Post extends Component {
                         }}
                         style={{
                             marginLeft: 30,
-                            borderRadius: 4,
-                            backgroundColor: styles.backgroundColor,
-                            color: styles.textColor,
+                            marginTop: -5,
                         }}>
                             Edit
                         </button>

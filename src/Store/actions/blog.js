@@ -6,8 +6,7 @@ export function createPost(post) {
         // make async call
         const firebase = getFirebase();
         const state = getState();
-        let pDate = new Date(post.date)
-        console.log(pDate.toLocaleString('en-US',{day: 'numeric', month: 'short', year: 'numeric'}))
+        let pDate = new Date(post.ts)
         firebase.firestore().collection('blogs').doc(post.title).set({
             ...post,
             date: pDate.toLocaleString('en-US',{day: 'numeric', month: 'short', year: 'numeric'}),

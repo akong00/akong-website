@@ -22,13 +22,10 @@ div.user-page {
         margin: 5px 0 10px 0;
     }
 
-    button.submit-button {
+    .submit-button {
         position: relative;
         float: right;
         padding: 5px;
-        border-radius: 5px;
-        background-color: $backgroundColor;
-        color: $textColor;
         margin: 5px 0 10px 0;
     }
 
@@ -58,5 +55,19 @@ div.user-page {
                 color: $textColor;
             }
         }
+
+        .cm-tag {
+            color: $h1Color;
+        }
+
+        .cm-attribute {
+            color: $h2Color;
+        }
+
+        .cm-string {
+            color: $h3Color;
+        }
+
+
     }
 }

@@ -5,7 +5,8 @@ let initialState = {
 };
 
 function createPost(state, action) {
-    window.alert('sucessfully created new blog: ', action.payload.post.title)
+    let p = action.payload.post;
+    window.alert('sucessfully ' + (p.published ? 'PUBLISHED' : 'SAVED CHANGES to') + ' post:\n' + p.title)
     return state;
 }
 
