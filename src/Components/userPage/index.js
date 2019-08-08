@@ -41,7 +41,7 @@ class UserPage extends Component {
                     <div className='create-blog-post'>
                         <h2>Create Blog Post</h2>
                         <hr/>
-                        <input type="file" onChange={e => this.props.setNewPostField('image', e.target.files[0])}/>
+                        <input multiple type="file" onChange={e => this.props.setNewPostField('images', e.target.files)}/>
                         <div className='input-fields'>
                             {newPostFields.map(f => {
                             switch(f.type) {

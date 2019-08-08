@@ -408,7 +408,7 @@ function setNewPostField(state, action) {
             }
         }
     }
-
+    console.log(nextState.userPage.newPost)
     return nextState;
 }
 

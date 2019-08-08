@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from 'Store/actions';
-import { Row } from 'react-bootstrap';
+import { Row, Carousel } from 'react-bootstrap';
 
 import ReactMarkdown from 'react-markdown/with-html';
 
@@ -60,7 +60,13 @@ class Post extends Component {
                     </Row>
                     
                     <hr/>
-                    {post.image && console.log(post.image)}
+                    <Carousel interval={null}>
+                        {post.images && post.images.map(img =>
+                        <Carousel.Item>
+                            <img style={{width: '100%'}} src={img.src} alt={img.alt}/>
+                        </Carousel.Item>
+                        )}
+                    </Carousel>
                     <div>
                         <ReactMarkdown
                         source={post.content}
