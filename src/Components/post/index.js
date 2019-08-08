@@ -64,7 +64,9 @@ class Post extends Component {
                     <Carousel interval={null}>
                         {post.images.map(img =>
                         <Carousel.Item>
-                            <img style={{width: '100%'}} src={img.src} alt={img.alt}/>
+                            <div style={{height: 500, overflowY: 'none'}}>
+                                <img style={{width: '100%', margin: 'auto 0'}} src={img.src} alt={img.alt}/>
+                            </div>
                         </Carousel.Item>
                         )}
                     </Carousel>

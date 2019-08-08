@@ -9,7 +9,7 @@ export function createPost(post) {
         console.log(firebase)
         const state = getState();
         let pDate = new Date(post.ts)
-        if(post.images) {
+        if(post.images && typeof(post.images) !== 'string') {
             firebase.uploadFiles('blogs/' + post.title.split(' ').join('-'), post.images).then(e => {
                 console.log(e)
                 let imgArray = []
