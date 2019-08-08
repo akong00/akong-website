@@ -60,13 +60,15 @@ class Post extends Component {
                     </Row>
                     
                     <hr/>
+                    {post.images &&
                     <Carousel interval={null}>
-                        {post.images && post.images.map(img =>
+                        {post.images.map(img =>
                         <Carousel.Item>
                             <img style={{width: '100%'}} src={img.src} alt={img.alt}/>
                         </Carousel.Item>
                         )}
                     </Carousel>
+                    }
                     <div>
                         <ReactMarkdown
                         source={post.content}

@@ -6,7 +6,7 @@ export default function fbParse(results) {
     else {
         results.forEach(d => {
             const fields = d._document.proto.fields;
-            p[d.id] = helperParser(fields);
+            p[d.id.split(' ').join('-')] = helperParser(fields);
         })
     }
     return p;

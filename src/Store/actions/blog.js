@@ -1,6 +1,6 @@
 import * as ActionTypes from 'Store/actionTypes';
 import fbParse from 'Utils/fbParse';
-import { pageLoadStyle } from '../../Utils/loadStyles';
+// import { pageLoadStyle } from '../../Utils/loadStyles';
 
 export function createPost(post) {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -46,10 +46,24 @@ export function createPost(post) {
                             })
                         })
                     })
+                    .catch(e => {
+                        dispatch({
+                            type: ActionTypes.SET_ERROR_ALERT,
+                            payload: {
+                                error: e
+                            }
+                        })
+                    })
+                    return 0;
                 })
             })
-            .then(imgArray => {
-                
+            .catch(e => {
+                dispatch({
+                    type: ActionTypes.SET_ERROR_ALERT,
+                    payload: {
+                        error: e
+                    }
+                })
             })
         }
         else {

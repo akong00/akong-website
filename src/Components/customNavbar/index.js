@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import actions from 'Store/actions';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
+import pro_pic from 'Images/pro_pic.png';
+import styles from 'Utils/styleVariables.scss';
 import './customNavbar.scss';
 
 class CustomNavbar extends Component {
@@ -12,7 +14,10 @@ class CustomNavbar extends Component {
         return (
             <div className='custom-navbar'>
                 <Navbar collapseOnSelect fixed='top' expand="md">
-                    <Navbar.Brand style={{cursor: 'pointer'}} onClick={() => this.props.setNextPage('/')}>ALBERT KONG</Navbar.Brand>
+                    <Navbar.Brand style={{cursor: 'pointer'}} onClick={() => this.props.setNextPage('/')}>
+                        <img style={{height: 27, borderRadius: 3, border: '1px solid ' + styles.textColor2, marginRight: 8}} src={pro_pic} alt='Albert_Kong_image'/>
+                        ALBERT KONG
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     <Navbar.Collapse id='responsive-navbar-nav'>
                         <Nav className='ml-auto'>
