@@ -315,10 +315,21 @@ let initialState = {
     },
     userPage: {
         extraKeys: {
+            //order: Shift-Cmd-Ctrl-Alt
             'Enter': e => e.replaceSelection(' \\n\n'),
             'Ctrl-C': e => {
                 e.replaceSelection('```\n');
                 e.replaceSelection('\n```\n', 'start');
+            },
+            'Shift-Ctrl-C': e => {
+                e.replaceSelection('<code>');
+                e.replaceSelection('</code>', 'start');
+            },
+            'Cmd-K': e => {
+                navigator.clipboard.readText().then(t => {
+                    e.replaceSelection('[');
+                    e.replaceSelection('](' + t + ')', 'start');
+                })
             },
         },
         newPostFields: [
@@ -408,7 +419,6 @@ function setNewPostField(state, action) {
             }
         }
     }
-    console.log(nextState.userPage.newPost)
     return nextState;
 }
 

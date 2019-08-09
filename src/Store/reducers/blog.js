@@ -6,7 +6,7 @@ let initialState = {
 
 function createPost(state, action) {
     let p = action.payload.post;
-    window.alert('sucessfully ' + (p.published ? 'PUBLISHED' : 'SAVED CHANGES to') + ' post:\n' + p.title)
+    window.alert('sucessfully ' + (p.published === 'true' ? 'PUBLISHED' : 'SAVED CHANGES to') + ' post:\n' + p.title)
     return state;
 }
 
