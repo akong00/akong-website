@@ -10,7 +10,6 @@ export function createPost(post) {
         let pDate = new Date(post.ts)
         if(post.images && !post.images[0].src) {
             firebase.uploadFiles('blogs/' + post.title.split(' ').join('-'), post.images).then(e => {
-                console.log(e)
                 let imgArray = []
                 let uploadedCount = 0;
                 e.map((f, i) => {

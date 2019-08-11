@@ -424,11 +424,12 @@ function setNewPostField(state, action) {
 
 function setNewPost(state, action) {
     let post = action.payload.post;
-    let date = action.payload.post.date.split("/");
+    let date = action.payload.post.ts;
     let content = action.payload.post.content;
-    date = date[2]+"/"+date[0]+"/"+date[1];
+    date = new Date(date);
+    date = date.toISOString().split('T')[0];
     content = content.split('\n\n').join('\\n\n');
-
+    console.log(date)
     let nextState = {
         ...state,
         userPage: {

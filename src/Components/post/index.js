@@ -63,10 +63,13 @@ class Post extends Component {
                     {post.images &&
                     <Carousel interval={null}>
                         {post.images.map(img =>
-                        <Carousel.Item>
-                            <div style={{height: 600, overflowY: 'none'}} onClick={e => console.log(e)}>
-                                <img style={{width: '100%', position: 'absolute', top: '50%', transform: 'translateY(-50%)'}} src={img.src} alt={img.alt}/>
-                            </div>
+                        <Carousel.Item key={img.src}>
+                            <a href={img.src} //eslint-disable-next-line
+                            target='_blank'>
+                                <div style={{height: 600, overflowY: 'none'}} onClick={e => console.log(e)}>
+                                    <img style={{width: '100%', position: 'absolute', top: '50%', transform: 'translateY(-50%)'}} src={img.src} alt={img.alt}/>
+                                </div>
+                            </a>
                         </Carousel.Item>
                         )}
                     </Carousel>
