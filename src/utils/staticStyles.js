@@ -148,12 +148,13 @@ export function createTextStyle(section) {
 
 export function createPostStyle() {
     let width = window.innerWidth;
-    let r = {
-        margin: 'auto'
-    };
+    let r = {};
 
     if(width > 1000) r.margin = '50px 27%';
-    else if(width > 600) r.width = 460;
+    else if(width > 600) {
+        r.width = 460;
+        r.margin = '50px auto'
+    }
     else if(width > 400) r.margin = 50;
     else r.margin = 15;
 

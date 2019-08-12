@@ -7,9 +7,16 @@ export function setNextPage(nextPage) {
     };
 }
 
-export function setNewPost(field, data) {
+export function setNewPostField(field, data) {
+    return {
+        type: ActionTypes.SET_NEW_POST_FIELD,
+        payload: { field, data }
+    }
+}
+
+export function setNewPost(post) {
     return {
         type: ActionTypes.SET_NEW_POST,
-        payload: { field, data }
+        payload: { post }
     }
 }

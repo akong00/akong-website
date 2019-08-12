@@ -1,5 +1,6 @@
 //content
 export const SET_NEXT_PAGE = 'SET_NEXT_PAGE';
+export const SET_NEW_POST_FIELD = 'SET_NEW_POST_FIELD';
 export const SET_NEW_POST = 'SET_NEW_POST';
 
 //blog

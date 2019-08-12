@@ -43,12 +43,16 @@ div.post {
     }
 
     p {
-        margin: 0 0 20px 0;
+        margin: 0 0 15px 0;
         font-size: 1.3rem;
 
         code {
             font-size: 1.1rem;
             padding: 3px 5px 3px 5px;
+            margin: 0 7px;
+            border: 1px solid $textColor2;
+            background-color: $backgroundHoverColor;
+            color: $textColor;
         }
     }
 
@@ -56,7 +60,7 @@ div.post {
         background-color: $backgroundHoverColor;
         padding: 5px 10px 5px 10px;
         border: 1px solid $textColor2;
-        margin: 5px 0 5px 0;
+        margin: 0px 0 15px 0;
         
         code {
             background-color: $backgroundHoverColor;

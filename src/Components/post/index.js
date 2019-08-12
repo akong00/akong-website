@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from 'Store/actions';
+import { Row, Carousel } from 'react-bootstrap';
 
 import ReactMarkdown from 'react-markdown/with-html';
 
@@ -33,7 +34,7 @@ class Post extends Component {
     }
 
     render() {
-        const { id, posts } = this.props;
+        const { id, posts, user } = this.props;
         const postStyle = staticStyles.createPostStyle();
         const post = posts[id];
         if(!post) return <div/>
@@ -42,9 +43,37 @@ class Post extends Component {
                 <div style={postStyle}>
                     <h1>{post.title}</h1>
                     <p><b>{post.subtitle}</b></p>
-                    <small><i>Posted by {post.author} on {post.date}</i></small>
+                    <Row style={{margin: 0}}>
+                        <small><i>Posted by {post.author} on {post.date}</i></small>
+                        {(user.role === 'boss' || user.role === 'capo') &&
+                        <button onClick={() => {
+                            this.props.setNewPost(post);
+                            this.props.setNextPage('/user');
+                        }}
+                        style={{
+                            marginLeft: 30,
+                            marginTop: -5,
+                        }}>
+                            Edit
+                        </button>
+                        }
+                    </Row>
+                    
                     <hr/>
-                    {post.image && console.log(post.image)}
+                    {post.images &&
+                    <Carousel interval={5000}>
+                        {post.images.map(img =>
+                        <Carousel.Item key={img.src}>
+                            <a href={img.src} //eslint-disable-next-line
+                            target='_blank'>
+                                <div style={{height: 600, overflowY: 'none'}} onClick={e => console.log(e)}>
+                                    <img style={{width: '100%', position: 'absolute', top: '50%', transform: 'translateY(-50%)'}} src={img.src} alt={img.alt}/>
+                                </div>
+                            </a>
+                        </Carousel.Item>
+                        )}
+                    </Carousel>
+                    }
                     <div>
                         <ReactMarkdown
                         source={post.content}
@@ -59,13 +88,15 @@ class Post extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        posts: state.blog.posts
+        posts: state.blog.posts,
+        user: state.user
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage))
+        setNextPage: (nextPage) => dispatch(actions.setNextPage(nextPage)),
+        setNewPost: (post) => dispatch(actions.setNewPost(post)),
     };
 };
 

@@ -75,7 +75,9 @@ class LandingPage extends Component {
                                     </h3>
                                     {panel.position === 'center' &&
                                     <div>
+                                        {panel.img &&
                                         <img style={{width: '5%', height: '5%', marginBottom: '1%', border: '2px solid ' + styles.textColor2, borderRadius: 4, boxShadow: '0 0 10px 10px ' + styles.shadowColor}} src={panel.img.src} alt={panel.img.alt}/>
+                                        }
                                         <Row className='justify-content-center' style={{width: panelStyle.width, margin: '0 auto 0 auto'}}>
                                         {panel.body.map(e =>
                                             <a

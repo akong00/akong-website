@@ -315,10 +315,21 @@ let initialState = {
     },
     userPage: {
         extraKeys: {
+            //order: Shift-Cmd-Ctrl-Alt
             'Enter': e => e.replaceSelection(' \\n\n'),
             'Ctrl-C': e => {
                 e.replaceSelection('```\n');
                 e.replaceSelection('\n```\n', 'start');
+            },
+            'Shift-Ctrl-C': e => {
+                e.replaceSelection('<code>');
+                e.replaceSelection('</code>', 'start');
+            },
+            'Cmd-K': e => {
+                navigator.clipboard.readText().then(t => {
+                    e.replaceSelection('[');
+                    e.replaceSelection('](' + t + ')', 'start');
+                })
             },
         },
         newPostFields: [
@@ -328,6 +339,14 @@ let initialState = {
                 values: [
                     'tech',
                     'personal',
+                ],
+            },
+            {
+                name: 'published',
+                type: 'single',
+                values: [
+                    'true',
+                    'false',
                 ],
             },
             {
@@ -345,48 +364,11 @@ let initialState = {
             {
                 name: 'tags',
                 type: 'multiple',
-                values: [
-                    {
-                        id: 1,
-                        name: 'Issue'
-                    },
-                    {
-                        id: 2,
-                        name: 'Tutorial'
-                    },
-                    {
-                        id: 3,
-                        name: 'React'
-                    },
-                    {
-                        id: 4,
-                        name: 'Javascript'
-                    },
-                    {
-                        id: 5,
-                        name: 'Python'
-                    },
-                    {
-                        id: 6,
-                        name: 'HTML'
-                    },
-                    {
-                        id: 7,
-                        name: 'CSS'
-                    },
-                    {
-                        id: 8,
-                        name: 'SCSS'
-                    },
-                    {
-                        id: 9,
-                        name: 'Github'
-                    },
-                ]
             }
         ],
         newPost: {
             type: 'tech',
+            published: 'true',
             title: '',
             subtitle: '',
             date: '',
@@ -401,20 +383,17 @@ function setNextPage(state, action) {
     let nextState = {
         ...state,
         content: {
-            curPage: state.content.nextPage ? state.content.nextPage : state.content.curPage,
             nextPage: action.payload.nextPage,
         }
     }
     return nextState;
 }
 
-function setNewPost(state, action) {
+function setNewPostField(state, action) {
     let nextState = {};
     if(action.payload.field === 'date') {
-        let ts = action.payload.data;
-        ts = ts.split("-");
-        let date = ts[1]+"/"+ts[2]+"/"+ts[0];
-        ts = new Date(date).getTime();
+        let date = action.payload.data;
+        let ts = new Date(date).getTime();
 
         nextState = {
             ...state,
@@ -440,12 +419,35 @@ function setNewPost(state, action) {
             }
         }
     }
-    console.log(nextState)
+    return nextState;
+}
+
+function setNewPost(state, action) {
+    let post = action.payload.post;
+    let date = action.payload.post.ts;
+    let content = action.payload.post.content;
+    date = new Date(date);
+    date = date.toISOString().split('T')[0];
+    content = content.split('\n\n').join('\\n\n');
+    console.log(date)
+    let nextState = {
+        ...state,
+        userPage: {
+            ...state.userPage,
+            newPost: {
+                ...post,
+                published: action.payload.post.published ? 'true' : 'false',
+                date: date,
+                content: content,
+            }
+        }
+    };
+
     return nextState;
 }
 
 function setErrorAlert(state, action) {
-    window.alert('ERROR: ', action.payload.error);
+    window.alert('ERROR: ' + action.payload.error);
     return state;
 }
 
@@ -453,6 +455,8 @@ function content(state = initialState, action) {
     switch (action.type) {
         case 'SET_NEXT_PAGE':
             return setNextPage(state, action);
+        case 'SET_NEW_POST_FIELD':
+            return setNewPostField(state, action);
         case 'SET_NEW_POST':
             return setNewPost(state, action);
         case 'SET_ERROR_ALERT':
