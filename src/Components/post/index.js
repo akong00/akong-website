@@ -61,7 +61,7 @@ class Post extends Component {
                     
                     <hr/>
                     {post.images &&
-                    <Carousel interval={null}>
+                    <Carousel>
                         {post.images.map(img =>
                         <Carousel.Item key={img.src}>
                             <a href={img.src} //eslint-disable-next-line
