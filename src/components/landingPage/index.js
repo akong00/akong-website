@@ -92,7 +92,6 @@ class LandingPage extends Component {
                                                     ...textStyle,
                                                     margin: 0,
                                                     fontSize: Math.floor(textStyle.fontSize / 2) * fontMultiplier,
-                                                    maxWidth: '1em',
                                                     cursor: 'pointer'
                                                 }}>
                                                     {e.name}

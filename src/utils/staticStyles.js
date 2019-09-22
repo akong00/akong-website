@@ -23,24 +23,29 @@ export function createPanelStyle(section) {
     switch(section) {
         case 'right':
             r.clipPath = 'polygon(100% 0, 0 33.33%, 0 66.67%, 100% 100%)';
+            r.webkitClipPath = 'polygon(100% 0, 0 33.33%, 0 66.67%, 100% 100%)';
             r.left = r.width / 3 * 2;
             r.width = r.width / 3;
             break;
         case 'top':
             r.clipPath = 'polygon(0 0, 33.33% 100%, 66.67% 100%, 100% 0)';
+            r.webkitClipPath = 'polygon(0 0, 33.33% 100%, 66.67% 100%, 100% 0)';
             r.height = Math.round(r.height / 3);
             break;
         case 'left':
             r.clipPath = 'polygon(0 0, 100% 33.33%, 100% 66.67%, 0 100%)';
+            r.webkitClipPath = 'polygon(0 0, 100% 33.33%, 100% 66.67%, 0 100%)';
             r.width = Math.round(r.width / 3);
             break;
         case 'bottom':
             r.clipPath = 'polygon(33.33% 0, 0 100%, 100% 100%, 66.67% 0)';
+            r.webkitClipPath = 'polygon(33.33% 0, 0 100%, 100% 100%, 66.67% 0)';
             r.top = r.height / 3 * 2;
             r.height = r.height / 3;
             break;
         case 'center':
             r.clipPath = 'polygon(0 0, 0 100%, 100% 100%, 100% 0)';
+            r.webkitClipPath = 'polygon(0 0, 0 100%, 100% 100%, 100% 0)';
             r.top = r.height / 3;
             r.left = r.width / 3;
             r.width = Math.floor(r.width / 3) + 1;
@@ -50,6 +55,7 @@ export function createPanelStyle(section) {
         
         default:
             r.clipPath = 'polygon(0 0, 0 100%, 100% 100%, 100% 0)';
+            r.webkitClipPath = 'polygon(0 0, 0 100%, 100% 100%, 100% 0)';
             r.paddingLeft = Math.round(r.width / 3);
             r.paddingTop = Math.round(r.height / 3);
             r.width = Math.floor(r.width / 3) + 1;
